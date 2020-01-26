@@ -1,2 +1,21 @@
 \newpage
 \section*{Problem 1:}
+Let $A = [a_{j,k}] \in \mathbb{R}^{n\times n} \succ 0$ and $L = [l_{j,k}]$ be its Cholesky factor. 
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwIn{$A=[a_{j,k}] \in \mathbb{R}^{n\times n} \succ 0$}
+\KwOut{ $L=[l_{j,k}]$ such that $A = LL^{T}$ }
+ $l_{j,k} = a_{j,k}, \forall j\geq k, j,k= 1,2, \ldots, n$ \;
+ \For{ $k= 1,2, \ldots, n $}{   
+  $l_{k,k} = \sqrt{l_{k,k}}$\;
+  $l_{k+1:n,k} = \frac{1}{l_{k,k}} l_{k+1:n, k}$\;
+  \eIf{condition}{
+   instructions1\;
+   instructions2\;
+   }{
+   instructions3\;
+  }
+ }
+ \caption{Cholesky Factorization}
+\end{algorithm}

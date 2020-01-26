@@ -69,39 +69,7 @@ plot_graph(8, A, title);
 
 P = [0 0 0 0 0 0 1 0 0;
      1 0 0 0 0 0 0 0 0;
-     0 0 0 1 0 0 0 0 0;
-     0 1 0 0 0 0 0 0 0;
-     0 0 1 0 0 0 0 0 0;
-     0 0 0 0 1 0 0 0 0;
-     0 0 0 0 0 1 0 0 0;
-     0 0 0 0 0 0 0 1 0;
-     0 0 0 0 0 0 0 0 1]
-syms x;
-Asyms = [x 0 x 0 0 0 x x x;
-         0 x 0 x 0 0 0 0 0;
-         x 0 x x 0 0 x 0 0;
-         0 x x x x 0 0 0 0;
-         0 0 0 x x 0 x 0 0;
-         0 0 0 0 0 x 0 x x;
-         x 0 x 0 x 0 x x 0;
-         x 0 0 0 0 x x x 0;
-         x 0 0 0 0 x 0 0 x];
-PT_times_A_times_P = transpose(P)*Asyms*P;
-%Then we do Cholesky on this one PT_times_A_times_P
-
-%or add the fill-in's in A 
-Asyms_fillin = [x 0 x 0 0 0 x x x;
-                0 x 0 x 0 0 0 0 0;
-                x 0 x x x 0 x 0 0;
-                0 x x x x 0 0 0 0;
-                0 0 x x x 0 x 0 0;
-                0 0 0 0 0 x 0 x x;
-                x 0 x 0 x 0 x x 0;
-                x 0 0 0 0 x x x x;
-                x 0 0 0 0 x 0 x x];
-%Then compute transpose(P)*Asyms_fillin*P
-transpose(P)*Asyms_fillin*P
-%and take the lower triangle of it 
+     0 ];
 
 function plot_graph(no, mat, plot_title)
     mat_draw = mat - eye(size(mat));
