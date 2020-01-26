@@ -34,7 +34,7 @@ $$
 \item 
 Let $A$ be a banded $n\times n$ matrix with bandwidth $2p+1$, i.e., $a_{jk}=0 \text{\ if\ } |j-k|>p$. To show that Cholesky factor $L$ has lower bandwidth $p$, i.e.,  $l_{jk}=0 \text{\ if\ } j-k>p$, we need to show the Cholesky factorization does not introduce any fill-in's. Line 3 and 4 in Algorithm \ref{algo:chol} do not introduce any fill-in's. Line 6 can be re-written (in scalar notation instead of MATLAB's vector notation) as 
 $
-l_{ik} = l_{ik} - \frac{l_{i,j}}{l_{k,k}} \text{\ and \ } i= j, j+1 \ldots, n
+l_{ij} = l_{ij} - \frac{l_{i,k}}{l_{k,k}} \text{\ and \ } i= j, j+1 \ldots, n
 $
 
 
