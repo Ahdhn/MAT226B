@@ -1,21 +1,36 @@
-\newpage
 \section*{Problem 1:}
-Let $A = [a_{j,k}] \in \mathbb{R}^{n\times n} \succ 0$ and $L = [l_{j,k}]$ be its Cholesky factor. 
+\begin{enumerate}
+\item Let $A = [a_{j,k}] \in \mathbb{R}^{n\times n} \succ 0$ and $L = [l_{j,k}]$ be its Cholesky factor. Using MATLAB notation, Algorithm \ref{algo:chol} shows Cholesky factorization algorithm
 
 \begin{algorithm}[H]
 \SetAlgoLined
 \KwIn{$A=[a_{j,k}] \in \mathbb{R}^{n\times n} \succ 0$}
 \KwOut{ $L=[l_{j,k}]$ such that $A = LL^{T}$ }
- $l_{j,k} = a_{j,k}, \forall j\geq k, j,k= 1,2, \ldots, n$ \;
+ $l_{j,k} = a_{j,k}, \forall j\geq k \text{\ and\ }  j,k= 1,2, \ldots, n$ \\
  \For{ $k= 1,2, \ldots, n $}{   
-  $l_{k,k} = \sqrt{l_{k,k}}$\;
-  $l_{k+1:n,k} = \frac{1}{l_{k,k}} l_{k+1:n, k}$\;
-  \eIf{condition}{
-   instructions1\;
-   instructions2\;
-   }{
-   instructions3\;
+  $l_{k,k} = \sqrt{l_{k,k}}$\\
+  $l_{k+1:n,k} = \frac{1}{l_{k,k}} l_{k+1:n, k}$\\
+  
+  \For{$j=k+1, k+2, \ldots, n$}{
+	  $l_{j:n,j} = l_{j:n,j} - l_{j:n,k}l_{jk}$\\  
   }
  }
  \caption{Cholesky Factorization}
+\label{algo:chol}
 \end{algorithm}
+
+\noindent Line 1 in Algorithm \ref{algo:chol} is a memory copy and does not include any flops. Line 3 accounts for $n$ square root operations. On iteration $k$, Line 4 will account for $n-k$ division operations. Since this loop goes from $k= 1,2, \ldots, n $, we get $\sum_{i=1}^{n}(n-k) = \frac{1}{2}n(n-1)$ division operation.
+
+\noindent Line 6 does two operations; subtraction and multiplication, each on a vector of length $(n-j+1)$. Thus, the total cost of the inner loop is 
+$$
+\sum_{k=1}^{n} \sum_{j=k+1}^{n} 2(n-j+1) = \frac{1}{3}n(n^{2}-1)
+$$
+
+Thus, the total cost of Algorithm \ref{algo:chol} is 
+$$
+n + \frac{1}{2}n(n-1) + \frac{1}{3}n(n^2-1) \text{\ flops}
+$$
+
+\item 
+ 
+\end{enumerate}
