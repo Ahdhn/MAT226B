@@ -1,2 +1,53 @@
 \newpage
 \section*{Problem 2:}
+\begin{enumerate}
+\item Taken an example for $m=5$ to see the pattern of how the non-zero values arise in the Cholesky factor $L$
+
+$$
+T_{5} = 
+\begin{bmatrix}
+2  & -1 & 0  & 0  & 0  &\\
+-1 & 2  & -1 & 0  & 0  &\\
+0  & -1 & 2  & -1 & 0  &\\
+0  & 0  & -1 & 2  & -1 &\\
+0  & 0  & 0  & -1 & 2  &\\
+\end{bmatrix}
+\Longrightarrow 
+L^{1} = 
+\begin{bmatrix}
+d_{1} &  0           & 0  & 0  & 0  &\\
+h_{1} & 2-h_{1}^{2}  & 0  & 0  & 0  &\\
+0     & -1           & 2  &  0 & 0  &\\
+0     & 0            & -1 & 2  & 0 &\\
+0     & 0            & 0  & -1 & 2  &\\
+\end{bmatrix}
+$$
+where $d_{1} = \sqrt{2}$ and $h_{1}= \frac{-1}{d1}$
+$$
+L^{2} = 
+\begin{bmatrix}
+d_{1} & 0     & 0            & 0  & 0  &\\
+h_{1} & d_{2} &  0           & 0  & 0  &\\
+0     & h_{2} & 2-h_{2}^{2}  &  0 & 0  &\\
+0     & 0     & -1           & 2  &  0 &\\
+0     & 0     & 0            & -1 & 2  &\\
+\end{bmatrix}
+$$
+where $d_{2} = \sqrt{2-h_{1}^{2}}$ and $h_{2}= \frac{-1}{d_{2}}$
+
+$$
+L^{3} = 
+\begin{bmatrix}
+d_{1} & 0     & 0      & 0            & 0  &\\
+h_{1} & d_{2} & 0      & 0            & 0  &\\
+0     & h_{2} & d_{3}  & 0            & 0  &\\
+0     & 0     & h_{3}  & 2-h_{3}^{2}  & 0  &\\
+0     & 0     & 0      & -1           & 2  &\\
+\end{bmatrix}
+$$
+where $d_{3} = \sqrt{2-h_{2}^{2}}$ and $h_{3}= \frac{-1}{d_{3}}$
+
+Following until the final step, we can see that the diagonal elements of Cholesky factor $L$ are $d_{i} = \sqrt{2-h_{i-1}^{2}}$ and the lower diagonal elements $h_{i} = \frac{-1}{d_{i}}$ where $h_{0} = 0$.
+
+\item 
+\end{enumerate}

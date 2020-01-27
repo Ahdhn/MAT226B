@@ -32,12 +32,53 @@ n + \frac{1}{2}n(n-1) + \frac{1}{3}n(n^2-1) \text{\ flops}
 $$
 
 \item 
-Let $A$ be a banded $n\times n$ matrix with bandwidth $2p+1$, i.e., $a_{jk}=0 \text{\ if\ } |j-k|>p$. To show that Cholesky factor $L$ has lower bandwidth $p$, i.e.,  $l_{jk}=0 \text{\ if\ } j-k>p$, we need to show the Cholesky factorization does not introduce any fill-in's. Line 3 and 4 in Algorithm \ref{algo:chol} do not introduce any fill-in's. Line 6 can be re-written (in scalar notation instead of MATLAB's vector notation) as 
-$
-l_{ij} = l_{ij} - \frac{l_{i,k}}{l_{k,k}} \text{\ and \ } i= j, j+1 \ldots, n
-$
+Let $A$ be a banded $n\times n$ matrix with bandwidth $2p+1$, i.e., $a_{jk}=0 \text{\ if\ } |j-k|>p$. To show that Cholesky factor $L$ has lower bandwidth $p$, i.e.,  $l_{jk}=0 \text{\ if\ } j-k>p$, we need to show the Cholesky factorization does not introduce any fill-in's. Line 3 and 4 in Algorithm \ref{algo:chol} do not introduce any fill-in's. 
+
+At step $k$, the factor $l_{jk}$ in Line 6 will be non-zero only for $k \leq j \leq k+p$. Thus, the only possible fill-in's for column $j$ (i.e., at iteration $j$ of the inner loop) is at the first $p$ rows below the diagonal which are already non-zero since $A$ is banded matrix with bandwidth $2p+1$ which means there is $p$ non-zero rows below the diagonal already. 
+
+\item Cholesky factorization can be re-written more efficiently for banded matrices since it is guaranteed to \emph{not} introduce fill-in such that computation can be skipped for the zero elements. Algorithm \ref{algo:chol_band} shows Cholesky factorization algorithm for banded matrices 
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwIn{$A=[a_{j,k}] \in \mathbb{R}^{n\times n} \succ 0 \text{\ with\ bandwidth\ } 2p+1$}
+\KwOut{ $L=[l_{j,k}]$ such that $A = LL^{T}$ }
+ $l_{j,k} = a_{j,k}, \forall j\geq k \text{\ and\ }  j,k= 1,2, \ldots, n$ \\
+ \For{ $k= 1,2, \ldots, n $}{   
+  $l_{k,k} = \sqrt{l_{k,k}}$\\
+  $l_{k+1:k+p,k} = \frac{1}{l_{k,k}} l_{k+1:k+p, k}$\\
+  
+   \For{$j=k+1, k+2, \ldots, k+p$}{
+	  $l_{j:k+p,j} = l_{j:k+p,j} - l_{j:k+p,k}\quad l_{j,k}$\\  
+  }
+%\For {$j=k+1, k+2 \ldots, k+p$}{
+%		\For {$i=j, j+1, \ldots, p+k$}{
+%			$l_{i,j} = l_{i,j} - l_{i,k}l_{j,k}$
+%		}
+%	}
+}
+ \caption{Cholesky Factorization for Banded Matrices}
+\label{algo:chol_band}
+\end{algorithm}
 
 
- 
-\item 
+In the algorithm above, we note the following 
+\begin{itemize}
+\item Line 4 now only operates on the first $p$ rows below the diagonal elements of the column $k$.
+\item  Line 5 only goes through the first $p$ columns after column $k$ (during iteration $k$) since the factor $l_{jk}$ (Line 6) will be zero for $j > k+p$
+%\item Line 6 abandons MATLAB notation to easily illustrates that during computation of column $j$, we need only to go through the rows that will be added to non-zero elements of column $k$ which is reduced by one for every iteration (inner loop at Line 6). 
+\item Line 6 now only operates up to row $k+p$ since the rows below $k+p$ for column $k$ (i.e., at iteration $k$) will contain zeros. 
+\end{itemize}
+
+\item Algorithm \ref{algo:chol_band} requires $n$ square root operations. Line 4 requires only $p$ division. Since Line 4 runs for all $k$ values, then the total number of division done by Line 4 is $np$. 
+
+Line 6 costs one subtraction and one division. Thus the total cost of the whole loop (Line 5-7) is 
+$$
+\sum_{k=1}^{n}\quad \sum_{j=k+1}^{k+p}\quad \sum_{i=j}^{p+k} 2 = np(p+1)
+$$
+
+Thus, the total cost of Algorithm \ref{algo:chol_band} is
+$$
+n(p+1)^{2}
+$$
+
 \end{enumerate}
