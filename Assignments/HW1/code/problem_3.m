@@ -1,7 +1,7 @@
 clc;
 clear;
 clf;
-      
+format long e;
 
 A = [1 0 1 0 0 0 1 1 1;
      0 1 0 1 0 0 0 0 0;
