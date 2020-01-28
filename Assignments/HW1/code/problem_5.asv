@@ -28,5 +28,4 @@ L(:,13)
 fprintf("\n nonzero entries in L at column = %d\n", 16);
 L(:,16)
 
-err = normest(small_A.A - L*transpose(L))/normest(L);
-fprintf("\n relative error = %e\n", err);
+fprintf(
