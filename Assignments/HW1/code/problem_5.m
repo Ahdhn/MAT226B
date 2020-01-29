@@ -29,4 +29,44 @@ fprintf("\n nonzero entries in L at column = %d\n", 16);
 L(:,16)
 
 err = normest(small_A.A - L*transpose(L))/normest(L);
-fprintf("\n relative error = %e\n", err);
+fprintf("\n relative error = %e\n\n\n", err);
+
+fprintf("\n         $$$$$$ medium_ex1 $$$$$$$\n ");
+run_reorder(med_A1.A, 30, 200);
+
+fprintf("\n         $$$$$$ medium_ex2 $$$$$$$\n ");
+run_reorder(med_A2.A, 30, 200);
+
+function run_reorder(A, nnzmax_factor, tlimit)
+    run_chol(A, nnzmax_factor*nnz(A), tlimit,...
+        '** No reorder **');
+
+    symamd_P = symamd(A);
+    run_chol(A(symamd_P,symamd_P), nnzmax_factor*nnz(A), tlimit, ...
+        '** SYMAMD **');
+
+    colamd_P = colamd(A);
+    run_chol(A(colamd_P, colamd_P), nnzmax_factor*nnz(A), tlimit, ...
+        '** COLAMD **');
+    
+    symrcm_P = symrcm(A);
+    run_chol(A(symrcm_P, symrcm_P), nnzmax_factor*nnz(A), tlimit, ...
+        '** SYMRCM **');
+    
+    colperm_P = colperm(A);
+    run_chol(A(colperm_P, colperm_P), nnzmax_factor*nnz(A), tlimit, ...
+        '** COLPERM **');
+end 
+
+function run_chol (A, nnzmax, tlimit, msg)
+    [L, flag, k] = spcholesky(A, nnzmax, tlimit);
+    fprintf('%s \n nnz(L) = %d, flag = %d, k= %d\n', msg, nnz(L), flag,k);
+    L_large = abs(full(L(:,1000)));
+    sort(L_large,'descend');
+    fprintf('Ten largest entries in column 1000\n');
+    
+    L_large(1:10,1)
+end
+
+
+

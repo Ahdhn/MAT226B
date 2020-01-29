@@ -49,5 +49,9 @@ where $d_{3} = \sqrt{2-h_{2}^{2}}$ and $h_{3}= \frac{-1}{d_{3}}$
 
 Following until the final step, we can see that the diagonal elements of Cholesky factor $L$ are $d_{i} = \sqrt{2-h_{i-1}^{2}}$ and the lower diagonal elements $h_{i} = \frac{-1}{d_{i}}$ where $h_{0} = 0$.
 
-\item 
+\item From the problem description, $T_{m\times m}$ is a banded matrix with bandwidth of $2m+1$. In addition, each row and column in $T_{m\times m}$ has at most 5 nonzero entries. 
+
+Let $L$ be the Cholesky factor of $T_{m\times m}$. At the first step of Cholesky factorization (i.e., $k=1$ in Algorithm \ref{algo:chol}) the first column will have the same structure but it will introduce a new fill-in in column 2 at row $m+1$ because $l_{1,m+1}$ contains non-zero (namely -1) while $l_{2, m+1}$ is zero and the operation $l_{j,2} = l_{j, 2} - l_{j,1}*l_{2,1} \text{\ where\ } j= m+1$ will result in a nonzero. There is no more fill-in's will be introduce with $k=1$. 
+
+Following with the same process for subsequent columns (i.e., $k>1$), it is clear that there is at least a new fill-in will be introduced at entry $l_{m+k,k+1}$ (actually there might be more than one new fill-in due to the fill-in's in previous columns). Thus, the sparsity structure of $L$ is a banded matrix with lower bandwidth of $m$ and all the entries $l_{i,k} \neq 0$ at $k\geq i $.
 \end{enumerate}
