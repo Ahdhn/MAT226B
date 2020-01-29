@@ -68,6 +68,233 @@ The relative error is
 $$
 \frac{\parallel A- LL^{T}\parallel_{2}}{\parallel L \parallel_{2}} = 3.513060e-16
 $$
-
+\newpage
 \item 
+\subsection*{\texttt{medium\_ex1.mat} ($A\in \mathbb{R}^{1600\times 1600}$ )}
+\paragraph*{No ordering:}
+\begin{itemize}
+\item $nnz(L)= 64039$
+\item $flag= 0$
+\item $k= 1600$
+\item Ten largest entries in $l_{j,1000}= $
+$$
+\begin{bmatrix}
+L_{1000,1000}=  & \quad \expnumber{1.818644}{+00}\\
+L_{1040,1000}=  & \quad \expnumber{5.498601}{-01}\\
+L_{1039,1000}=  & \quad \expnumber{1.903980}{-01}\\
+L_{1038,1000}=  & \quad \expnumber{7.649394}{-02}\\
+L_{1037,1000}=  & \quad \expnumber{3.549975}{-02}\\
+L_{1036,1000}=  & \quad \expnumber{1.867330}{-02}\\
+L_{1035,1000}=  & \quad \expnumber{1.086313}{-02}\\
+L_{1034,1000}=  & \quad \expnumber{6.832166}{-03}\\
+L_{1033,1000}=  & \quad \expnumber{4.562541}{-03}\\
+L_{1032,1000}=  & \quad \expnumber{3.192202}{-03}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\paragraph*{Reordering with \texttt{symamd}}
+\begin{itemize}
+\item $nnz(L)= 20296$
+\item $flag= 0$
+\item $k= 1600$
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{1000,1000}=  & \quad \expnumber{1.657056}{+00}\\
+L_{1064,1000}=  & \quad \expnumber{3.344285}{-01}\\
+L_{1067,1000}=  & \quad \expnumber{3.344285}{-01}\\
+L_{1066,1000}=  & \quad \expnumber{2.225333}{-01}\\
+L_{1061,1000}=  & \quad \expnumber{2.225333}{-01}\\
+L_{1068,1000}=  & \quad \expnumber{1.508700}{-01}\\
+L_{1011,1000}=  & \quad \expnumber{3.897475}{-02}\\
+L_{1062,1000}=  & \quad \expnumber{3.897475}{-02}\\
+L_{1012,1000}=  & \quad \expnumber{2.514500}{-02}\\
+L_{1063,1000}=  & \quad \expnumber{2.514500}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\newpage
+\paragraph*{Reordering with \texttt{colamd}}
+\begin{itemize}
+\item $nnz(L)= 32451$
+\item $flag= 0$
+\item $k= 1600$
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{1000,1000}=  & \quad \expnumber{1.793525}{+00}\\
+L_{1001,1000}=  & \quad \expnumber{6.537247}{-01}\\
+L_{1003,1000}=  & \quad \expnumber{5.575611}{-01}\\
+L_{1002,1000}=  & \quad \expnumber{2.364628}{-01}\\
+L_{1005,1000}=  & \quad \expnumber{3.913581}{-02}\\
+L_{1007,1000}=  & \quad \expnumber{3.178591}{-02}\\
+L_{1032,1000}=  & \quad \expnumber{2.481432}{-02}\\
+L_{1036,1000}=  & \quad \expnumber{2.367906}{-02}\\
+L_{1034,1000}=  & \quad \expnumber{1.416474}{-02}\\
+L_{1038,1000}=  & \quad \expnumber{9.514311}{-03}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\paragraph*{Reordering with \texttt{symrcm}}
+\begin{itemize}
+\item $nnz(L)= 45020$
+\item $flag= 0$
+\item $k= 1600$
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{1000,1000}=  & \quad \expnumber{1.792960}{+00}\\
+L_{1034,1000}=  & \quad \expnumber{6.331742}{-01}\\
+L_{1035,1000}=  & \quad \expnumber{5.577368}{-01}\\
+L_{1001,1000}=  & \quad \expnumber{2.420380}{-01}\\
+L_{1033,1000}=  & \quad \expnumber{1.009250}{-01}\\
+L_{1002,1000}=  & \quad \expnumber{4.826873}{-02}\\
+L_{1032,1000}=  & \quad \expnumber{3.746352}{-02}\\
+L_{1003,1000}=  & \quad \expnumber{1.954431}{-02}\\
+L_{1031,1000}=  & \quad \expnumber{1.865257}{-02}\\
+L_{1030,1000}=  & \quad \expnumber{1.080417}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\newpage
+\paragraph*{Reordering with \texttt{colperm}}
+\begin{itemize}
+\item $nnz(L)= 169301$
+\item $flag= 0$
+\item $k= 1600$
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{1000,1000}=  & \quad \expnumber{1.792811}{+00}\\
+L_{1001,1000}=  & \quad \expnumber{6.493278}{-01}\\
+L_{1038,1000}=  & \quad \expnumber{5.577833}{-01}\\
+L_{1037,1000}=  & \quad \expnumber{2.018610}{-01}\\
+L_{1036,1000}=  & \quad \expnumber{8.587340}{-02}\\
+L_{1035,1000}=  & \quad \expnumber{4.232677}{-02}\\
+L_{1002,1000}=  & \quad \expnumber{4.206819}{-02}\\
+L_{1034,1000}=  & \quad \expnumber{2.337139}{-02}\\
+L_{1003,1000}=  & \quad \expnumber{2.248362}{-02}\\
+L_{1033,1000}=  & \quad \expnumber{1.386363}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\newpage
+\subsection*{\texttt{medium\_ex2.mat} ($A\in \mathbb{R}^{1728\times 1728}$ )}
+\paragraph*{No ordering:}
+\begin{itemize}
+\item $nnz(L)= $
+\item $flag= $
+\item $k= $
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\paragraph*{Reordering with \texttt{symamd}}
+\begin{itemize}
+\item $nnz(L)= $
+\item $flag= $
+\item $k= $
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\newpage
+\paragraph*{Reordering with \texttt{colamd}}
+\begin{itemize}
+\item $nnz(L)= $
+\item $flag= $
+\item $k= $
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\paragraph*{Reordering with \texttt{symrcm}}
+\begin{itemize}
+\item $nnz(L)= $
+\item $flag= $
+\item $k= $
+\item Ten largest entries in $l_{j,1000}= $
+
+$$
+\begin{bmatrix}
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
+\newpage
+\paragraph*{Reordering with \texttt{colperm}}
+\begin{itemize}
+\item $nnz(L)= $
+\item $flag= $
+\item $k= $
+\item Four largest entries (the rest is all zero) in $l_{j,1000}= $ 
+
+$$
+\begin{bmatrix}
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{1.9314855917443310}{+00}\\
+L_{0,1000}=  & \quad \expnumber{-5.180834914653560}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-1.515180286251492}{-01}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+L_{0,1000}=  & \quad \expnumber{-2.197481923194983}{-02}\\
+\end{bmatrix}
+$$
+\end{itemize}
 \end{enumerate}
+
