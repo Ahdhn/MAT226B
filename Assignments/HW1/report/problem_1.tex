@@ -19,7 +19,7 @@
 \label{algo:chol}
 \end{algorithm}
 
-\noindent Line 1 in Algorithm \ref{algo:chol} is a memory copy and does not include any flops. Line 3 accounts for $n$ square root operations. On iteration $k$, Line 4 will account for $n-k$ division operations. Since this loop goes from $k= 1,2, \ldots, n $, we get $\sum_{i=1}^{n}(n-k) = \frac{1}{2}n(n-1)$ division operation.
+\noindent Line 1 in Algorithm \ref{algo:chol} is a memory copy and does not include any flops. Line 3 accounts for $n$ square root operations. On iteration $k$, Line 4 will account for $n-k$ division operations. Since this loop goes from $k= 1,2, \ldots, n $, we get $\sum_{k=1}^{n}(n-k) = \frac{1}{2}n(n-1)$ division operation.
 
 \noindent Line 6 does two operations; subtraction and multiplication, each on a vector of length $(n-j+1)$. Thus, the total cost of the inner loop is 
 $$
@@ -63,22 +63,30 @@ At step $k$, the factor $l_{jk}$ in Line 6 will be non-zero only for $k \leq j \
 
 In the algorithm above, we note the following 
 \begin{itemize}
-\item Line 4 now only operates on the first $p$ rows below the diagonal elements of the column $k$.
+\item Line 4 now only operates on the first $p$ rows below the diagonal.% elements of the column $k$.
 \item  Line 5 only goes through the first $p$ columns after column $k$ (during iteration $k$) since the factor $l_{jk}$ (Line 6) will be zero for $j > k+p$
 %\item Line 6 abandons MATLAB notation to easily illustrates that during computation of column $j$, we need only to go through the rows that will be added to non-zero elements of column $k$ which is reduced by one for every iteration (inner loop at Line 6). 
 \item Line 6 now only operates up to row $k+p$ since the rows below $k+p$ for column $k$ (i.e., at iteration $k$) will contain zeros. 
 \end{itemize}
 
-\item Algorithm \ref{algo:chol_band} requires $n$ square root operations. Line 4 requires only $p$ division. Since Line 4 runs for all $k$ values, then the total number of division done by Line 4 is $np$. 
+\newpage
+\item Algorithm \ref{algo:chol_band} requires $n$ square root operations. Line 4 requires only $p$ division. Since Line 4 runs for all $k$ values (except for the last $p$ columns but we ignore this corner case assuming $p\ll n$), then the total number of division done by Line 4 is $np$. 
 
-Line 6 costs one subtraction and one division. Thus the total cost of the whole loop (Line 5-7) is 
+Line 6 costs $p$ subtraction and division (assuming $p\ll n$). Thus the total cost of the whole loop (Line 5-7) is
+%$$
+%\sum_{k=1}^{n}\quad \sum_{j=k+1}^{k+p}\quad \sum_{i=j}^{p+k} 2 = np(p+1)
+%$$
+
 $$
-\sum_{k=1}^{n}\quad \sum_{j=k+1}^{k+p}\quad \sum_{i=j}^{p+k} 2 = np(p+1)
+\sum_{k=1}^{n}\quad \sum_{j=k+1}^{k+p} 2p = 2np^{2}
 $$
 
 Thus, the total cost of Algorithm \ref{algo:chol_band} is
 $$
-n(p+1)^{2}
+2np^{2} + np + n = 
 $$
+%$$
+%n(p+1)^{2}
+%$$
 
 \end{enumerate}

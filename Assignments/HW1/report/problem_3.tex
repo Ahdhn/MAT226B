@@ -56,7 +56,7 @@ x &  x &  x &  x &  x &  x &  x &  x &  x &  x\\
 \end{bmatrix}
 $$
 
-The Cholesky factor $L$ of $P^{T}AP$ will thus has the same sparsity structure as $P^{T}AP$ as shown in Figure \ref{fig:mat} for arbitrary $n$ and $m$. Thus, the upper bound of the $nnz(L) = (n-m) + m(n-m) + \frac{1}{2}mm$; where $n - m$ accounts for the diagonal elements (orange line), $m(n-m)$ is the blue rectangle, and $\frac{1}{2}mm$ is the red triangle. 
+The Cholesky factor $L$ of $P^{T}AP$ will thus has the same sparsity structure as $P^{T}AP$ as shown in Figure \ref{fig:mat} for arbitrary $n$ and $m$. Thus, the upper bound of the $nnz(L) = (n-m) + m(n-m) + \frac{1}{2}m^{2}$; where $n - m$ accounts for the diagonal elements (orange line), $m(n-m)$ is the blue rectangle, and $\frac{1}{2}m^{2}$ is the red triangle. 
 
 
 \begin{figure}[!tbh]

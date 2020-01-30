@@ -31,8 +31,6 @@ L(:,16)
 err = normest(small_A.A - L*transpose(L))/normest(L);
 fprintf("\n relative error = %e\n\n\n", err);
 
-clc;
-
 fprintf("\n         $$$$$$ medium_ex1 $$$$$$$\n ");
 run_reorder(med_A1.A, 30, 200);
 
@@ -66,7 +64,7 @@ function run_reorder(A, nnzmax_factor, tlimit)
 end 
 
 function run_chol (A, nnzmax, tlimit, msg)
-    [L, flag, k] = spcholesky(A, nnzmax, tlimit);
+    [L, flag, k] = spcholesky(A, nnzmax, tlimit);    
     fprintf('%s \n nnz(L) = %d, flag = %d, k= %d\n', msg, nnz(L), flag,k);
     L_large = abs(full(L(:,1000)));
     [L_large, L_large_row] = sort(L_large,'descend');
