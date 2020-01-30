@@ -1,0 +1,31 @@
+clc;
+clear;
+clf;
+format long e;
+
+syms x;
+%2 , 6, 8
+Asyms = [x x 0 0 0 x 0 x 0 0;
+         x x x x x x x x x x;
+         0 x x 0 0 x 0 x 0 0;
+         0 x 0 x 0 x 0 x 0 0;
+         0 x 0 0 x x 0 x 0 0;
+         x x x x x x x x x x;
+         0 x 0 0 0 x x x 0 0;
+         x x x x x x x x x x;
+         0 x 0 0 0 x 0 x x 0;
+         0 x 0 0 0 x 0 x 0 x;]  
+    
+
+P = [1 0 0 0 0 0 0 0 0;
+     0 0 0 0 0 0 0 0 1;
+     0 0 1 0 0 0 0 0 0;
+     0 0 0 1 0 0 0 0 0;
+     0 0 0 0 1 0 0 0 0;
+     0 0 0 0 0 0 0 1 0;
+     0 0 0 0 0 0 1 0 0;
+     0 0 0 0 0 0 0 1 0;
+     0 0 0 0 0 1 0 0 0;
+     0 1 0 0 0 0 0 0 0;]
+ 
+ pAp = transpose(P)*Asyms*P
