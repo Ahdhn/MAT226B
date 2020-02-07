@@ -11,8 +11,24 @@
 \usepackage[square,numbers]{natbib}
 \usepackage{graphicx}
 \bibliographystyle{unsrtnat}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{amsfonts,amsmath, color, fullpage, graphicx, mathtools, empheq, amsthm, amssymb}
+\usepackage{wasysym}
+\usepackage{thmtools}
+\usepackage{listings}
+\usepackage[ruled,vlined, linesnumbered]{algorithm2e}
 
-\usepackage[framed,numbered,autolinebreaks,useliterate]{../mcode}
+\setenumerate[0]{label=(\alph*)}
+
+\usepackage[framed,numbered,autolinebreaks,useliterate]{../../mcode}
+
+%To write numbers in scientific notation nicely
+%use as \expnumber{2.000000000000000}{+00} to write 2.000000000000000e+00
+\newcommand{\expnumber}[2]{{#1}\mathrm{e}{#2}}
+
+
 
 \begin{document}
 
