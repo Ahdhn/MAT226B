@@ -1,5 +1,92 @@
-\section*{Problem 1:}
+\newpage
+\section*{Problem 2:}
 \begin{enumerate}
-\item
+\item For the given matrix $U^{(k)}$, there will be \textbf{10} fill-in elements as shown in the following matrix if the $k$-th step of sparse LU factorization is performed without pivoting where the fill-in elements are shown with $\color{red}{\textbf{+}}$
+
+$$
+U^{(k)} = 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & 0 & 0 & 0 & 0 & * & 0 & 0 & * & 0 & 0 \\
+0 & 0 & 0 & * & 0 & 0 & 0 & 0 & 0 & * & * \\
+* & 0 & * & * & 0 & * & 0 & 0 & \color{red}{\textbf{+}} & 0 & * \\
+* & 0 & 0 & 0 & 0 & * & 0 & 0 & \color{red}{\textbf{+}} & * & 0 \\
+0 & * & 0 & 0 & 0 & * & 0 & 0 & 0 & 0 & * \\
+* & 0 & 0 & 0 & 0 & \color{red}{\textbf{+}} & * & * & \color{red}{\textbf{+}} & 0 & 0 \\
+0 & 0 & 0 & * & * & 0 & 0 & 0 & * & 0 & * \\
+* & 0 & 0 & 0 & 0 & \color{red}{\textbf{+}} & 0 & 0 & \color{red}{\textbf{+}} & * & 0 \\
+* & 0 & 0 & * & 0 & \color{red}{\textbf{+}} & 0 & * & \color{red}{\textbf{+}} & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & * & * & 0 & 0 & * \\
+* & * & * & 0 & * & \color{red}{\textbf{+}} & 0 & 0 & \color{red}{\textbf{+}} & 0 & 0 \\
+\end{bmatrix}
+$$
+The location of the fill-in elements is: $(6,6)$, $(8,6)$, $(9,6)$, $(11,6)$, $(3,9)$, $(4,9)$, $(6,9)$, $(8,9)$, $(9,9)$, and $(11,9)$.
+
+\item In order to determine the number of fill-in elements with pivot element via Markowitz criterion, we first need to specify the candidate pivot elements. Since we have parameter $\alpha = 0.1$ and
+
+$$
+\min_{i,l : u_{i,l}\neq 0} |u_{il}| \geq \frac{1}{7} \max_{i,l}|u_{il}|
+$$
+Then any nonzero entry in $U^{(k)}$ is a candidate pivot. Now, we need to apply Markowitz criterion i.e., swap the rows and columns with least number of nonzero entries. Let $c_{l} \text{\ and\ } r_{i} \in \mathbb{R}^{11}$ be the two vectors that define the number of nonzero entry per each column and row respectively. 
+
+$$
+\setcounter{MaxMatrixCols}{50}
+c_{l} = 
+\begin{bmatrix}
+ 7&
+ 2&
+ 2&
+ 4&
+ 2&
+ 4&
+ 2&
+ 3&
+ 2&
+ 3&
+ 5&
+\end{bmatrix}
+$$
+
+$$
+\setcounter{MaxMatrixCols}{50}
+r_{i} = 
+\begin{bmatrix}
+ 3&
+ 3&
+ 5&
+ 3&
+ 3&
+ 3&
+ 4&
+ 2&
+ 3&
+ 3&
+ 4&
+\end{bmatrix}
+$$
+
+Row 8 has the least number of nonzero entry among all rows. Columns 2, 3, 5, 7, and 9 has the lowest number of nonzero entry among all columns. However row 8 coincides with column 2, 3, 5, 7, and 9 in zero entry so non of them can be choose as a pivot element. Thus, we need to choose a row with the second lowest number of nonzero i.e., 3 nonzero entry per row. Rows 1, 2, 4, 5, 6, 9, and 10 satisfy  this condition. Following Markowitz criterion, we chose the row with the lowest index i.e., row 1. It is possible now to choose one of the above columns that has 2 nonzero entry and meets row 1 in a nonzero entry i.e, column 9. Thus, \textbf{the pivot element is (1, 9)} which minimizes $(r_{i} -1)(c_{l}-1)$ to be 2. Thus, the worst case number of fill-in elements is 2. 
+
+To determine the fill-in elements location, we need first to bring the pivot element to the top-left corner by swapping column 1 and 9 and then perform the $k$-th step of sparse LU factorization. The location of the two fill-in is shown in the following matrix. 
+
+$$
+U^{(k)} = 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & 0 & 0 & 0 & 0 & * & 0 & 0 & * & 0 & 0 \\
+0 & 0 & 0 & * & 0 & 0 & 0 & 0 & 0 & * & * \\
+0 & 0 & * & * & 0 & * & 0 & 0 & * & 0 & * \\
+0 & 0 & 0 & 0 & 0 & * & 0 & 0 & * & * & 0 \\
+0 & * & 0 & 0 & 0 & * & 0 & 0 & 0 & 0 & * \\
+0 & 0 & 0 & 0 & 0 & 0 & * & * & * & 0 & 0 \\
+* & 0 & 0 & * & * & \color{red}{\textbf{+}} & 0 & 0 & \color{red}{\textbf{+}} & 0 & * \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & * & * & 0 \\
+0 & 0 & 0 & * & 0 & 0 & 0 & * & * & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & * & * & 0 & 0 & * \\
+0 & * & * & 0 & * & 0 & 0 & 0 & * & 0 & 0 \\
+\end{bmatrix}
+$$
 
 \end{enumerate}
+
+

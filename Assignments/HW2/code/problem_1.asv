@@ -1,0 +1,25 @@
+clc;
+clear;
+clf;
+
+format long e;
+
+matrix_a = load('HW2_P1_a.mat');
+matrix_b = load('HW2_P1_b.mat');
+
+
+[Ja,Ia] = extract(matrix_a.A);
+
+fprintf("\n Matrix HW2_P1_a.mat J(100000)= %f\n ", Ja(100000));
+fprintf("\n Matrix HW2_P1_a.mat J(150000)= %f\n ", Ja(150000));
+fprintf("\n Matrix HW2_P1_a.mat J(200000)= %f\n ", Ja(200000));
+fprintf("\n Matrix HW2_P1_a.mat J(250000)= %f\n ", Ja(200000));
+
+
+[Jb,Ib] = extract(matrix_b.A);
+
+function [J,I] = extract(mat)
+    [J,K]= find(mat);
+    KK = [1; K(2:length(K)) ~= K(1:length(K)-1)];
+    I = find(KK);
+end
