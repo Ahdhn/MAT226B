@@ -1,0 +1,24 @@
+clc;
+clear;
+clf;
+format long e;
+
+function out = ZtFZ(F)
+    %out = Z^{T}FZ
+    m = size(F,2);
+    F_t = [zeros(1,m);F;zeros(m+1,m)];
+    w_t =
+end
+
+function V = FFTBasedPoissonSolver(m, b0, b1, c0, c1, f)
+    h = 1/(m+1);
+    factor = 1/(h^2);
+    %adjust F
+    f(1,:) = f(1,:) + factor*b0;
+    f(m,:) = f(m,:) + factor*b1;
+    f(:,1) = f(:,1) + factor*c0';
+    f(:,m) = f(:,m) + factor*c1';
+    
+    
+    
+end

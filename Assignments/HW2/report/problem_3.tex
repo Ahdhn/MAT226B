@@ -1,6 +1,30 @@
 \newpage
 \section*{Problem 3:}
 \begin{enumerate}
-\item
+\item In order generalize the fast elliptical solver, we need account for the nonzero boundary conditions and add it to the $F$ matrix. Let $V_{jk} \approx V(x_{i}, y_{k}) \in \mathbb{R}^{m\times m}$ and $f_{j,k} \approx f(x_{j}, y_{k}) \in \mathbb{R}^{m\times m}$ where $m$ is the number of grid point in each dimension and $i,k = 1, \dots, m$. The centered finite-difference formula is 
+$$
+4 v_{jk} - v_{j-1,k} - v_{j+1,k} - v_{j, k-1} - v_{j,k+1} = h^{2}f_{j,k}, \quad j,k=1, \dots, m
+$$
+The compact formulation of the 2D centered finite-difference from which we derived the FFT-based fast elliptical solver is 
 
+$$
+T_{m}V + VT_{m} = h^{2}F
+$$
+
+where $h=\frac{1}{m+1}$ and $T_{m}\in \mathbb{R}^{m\times m}$ is the centered finite-difference in 1D i.e., 
+
+$$
+T_{m} = 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+2 & -1& 0 & \cdots & 0\\
+-1& 2 & -1& \cdots  & \vdots\\
+\vdots & \ddots & \ddots & \ddots & \vdots\\
+\vdots &   & \ddots & \ddots & -1\\
+0 & \cdots & 0 & -1 & 2\\
+\end{bmatrix}
+$$
+The nonzero boundary conditions only changes $F$  when $j=1 \text{\ or\ } m$ and $k=1 \text{\ or\ } m$ as follows. With zero boundary condition at $j=1$, $v_{j-1,k} = v_{0,k}$ ($k=1, \dots m $) used to not affect $F$ but now since $v_{0,k} = c0(y)$, we need to add this to the RHS $F$. We do the same thing for the remaining three boundaries. This will adjust $F$ such that $F(:,1) = F(:,1) + \frac{b_{0}(x)}{h^{2}}$, $F(:,m) = F(:,m) + \frac{b_{1}(x)}{h^{2}}$, $F(1,:) = F(1,:) + \frac{c_{0}(y)}{h^{2}}$, and $F(m,:) = F(m,:) + \frac{c_{1}(y)}{h^{2}}$.
+
+Note that we divide by $h^{2}$ since $F$ will be multiplied by $h^{2}$ and so it cancels out. We substitute the discrete values $x$ and $y$ at grid point $j$ in $b_{0}(x), b_{1}(x), c_{0}(y),\text{\ and \ } c_{1}(x)$ as $x= \frac{j}{m+1}$ and $y= \frac{j}{m+1}$. After adjusting $F$, the same derivation will follow as given in the class. 
 \end{enumerate}

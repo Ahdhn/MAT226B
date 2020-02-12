@@ -1,5 +1,43 @@
 \section*{Problem 5:}
 \begin{enumerate}
-\item
+\item A single iteration of the CG algorithm requires:
+\begin{itemize}
+\item Three SAXPY each takes $2n^{2}$ flops
+\item Two inner products each takes $2n^{2} -1$
+\item Single matrix-vector multiplication which takes for a general (dense) matrix $2n^3-n$
+\end{itemize}
+Thus, the total flops requires for a single iteration is 
+$$
+3*2n^{2} + 2*(2n^{2} -1) + 2n^3-n = 2n^{3} + 10 n^{2} - n - 2 \text{\ flops}
+$$
 
-\end{enumerate}
+\item The $k-$iterate of the CG algorithm has the following property
+$$
+\frac{\shortparallel x^{*} - x_{k} \shortparallel_{A}}{\shortparallel x^{*} - x_{0} \shortparallel_{A}} \leq 2 \left( \frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right) ^{k}
+$$
+
+where $x^{*}$ is the solution i.e.,  $x^{*} = A^{-1}b$ and $\kappa$ is the condition number of $A$. Given that $\shortparallel x^{*} - x_{0} \shortparallel_{A} = \frac{1}{2}$ and $\kappa = 9$, then to find the minimum number $k$ of iterations that generates $\shortparallel x^{*} - x_{k} \shortparallel_{A} \leq 10^{-12}$ we need to solve for $k$ in the following equation 
+$$
+\frac{10^{-12}}{0.5} \leq 2 \left( \frac{\sqrt{9}-1}{\sqrt{9}+1}\right) ^{k}
+$$
+which gives $k<= 39.8631$. Thus, \textbf{the minimum number of iteration is $40$}.
+
+\item Solving $Ax = b$ via Cholesky factorization requires three steps; first the decomposition of $A = LL^{T}$ which requires (from Homework 1)
+$$
+n + \frac{1}{2}n(n-1) + \frac{1}{3}n(n^2-1) \text{\ flops}
+$$
+Second, the forward substitution which requires 
+$$
+\sum_{k=0}^{n-1}(1+2k) = n^{2} \text{\ flops}
+$$
+Third, the backward substitution which requires also $n^{2}$ flops. Thus, the total number of flops to solver $Ax = b$ is 
+
+$$
+n + \frac{1}{2}n(n-1) + \frac{1}{3}n(n^2-1) + 2n^{2} = \frac{1}{3}n^{3} + \frac{5}{2}n^{2} + \frac{1}{6}n \text{\ flops}
+$$
+
+While solving the same system using CG up to $k=40$ iterations requires 
+$$
+80n^{3} + 400 n^{2} - 40n - 80 \text{\ flops}
+$$
+\end{enumerate} 
