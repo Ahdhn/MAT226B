@@ -1,14 +1,15 @@
+\newpage
 \section*{Problem 5:}
 \begin{enumerate}
 \item A single iteration of the CG algorithm requires:
 \begin{itemize}
 \item Three SAXPY each takes $2n^{2}$ flops
 \item Two inner products each takes $2n^{2} -1$
-\item Single matrix-vector multiplication which takes for a general (dense) matrix $2n^3-n$
+\item Single matrix-vector multiplication which takes for a general (dense) matrix $2n^2-n$
 \end{itemize}
 Thus, the total flops requires for a single iteration is 
 $$
-3*2n^{2} + 2*(2n^{2} -1) + 2n^3-n = 2n^{3} + 10 n^{2} - n - 2 \text{\ flops}
+3*2n^{2} + 2*(2n^{2} -1) + 2n^2-n = 12 n^{2} - n - 2 \text{\ flops}
 $$
 
 \item The $k-$iterate of the CG algorithm has the following property
@@ -36,8 +37,14 @@ $$
 n + \frac{1}{2}n(n-1) + \frac{1}{3}n(n^2-1) + 2n^{2} = \frac{1}{3}n^{3} + \frac{5}{2}n^{2} + \frac{1}{6}n \text{\ flops}
 $$
 
-While solving the same system using CG up to $k=40$ iterations requires 
+While solving the same system using CG up to $k=40$ iterations requires (ignoring the initial operation to calculate $r_{0}$) 
 $$
-80n^{3} + 400 n^{2} - 40n - 80 \text{\ flops}
+480 n^{2} - 40n - 80 \text{\ flops}
 $$
+
+\item Using only the term of the highest power of $n$, the matrix size $n$ for which $k$ CG iteration (where $k=40$) iterations requires only one tenth of the arithmetic operations that Cholesky approach requires can be obtain from 
+$$
+480n^{2} = 0.1*\frac{1}{3}n^{3}
+$$
+which gives $n=14400$
 \end{enumerate} 
