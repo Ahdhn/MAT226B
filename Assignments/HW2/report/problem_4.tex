@@ -1,6 +1,19 @@
 \newpage
 \section*{Problem 4:}
 \begin{enumerate}
-\item
+\item Let $M\in \mathbb{R}^{n\times n}\succ 0$, $v_{1}, v_{2}, \dots, v_{k}\mathbb{R}^{n}$ be $k$ linearly independent vectors, and let $x^{*}, x_{0} \in \mathbb{R}^{n}$. To minimize the following 
+$$\parallel x^{*} - x_{k} \parallel_{M} = min_{x\in x_{0}+S} \parallel x^{*} -x||_{M}$$
+where $S = \text{span }\{v_{1}, v_{2}, \dots, v_{k}\}\subset \mathbb{R}^{n}$, we can write $x_{k}$ in the form 
+
+$$
+x_{k} = x_{0} + \alpha_{1}v_{1} + \alpha_{2}v_{2} + \dots + \alpha_{k}v_{k}, \quad \alpha_{1},\alpha_{2}, \dots, \alpha_{k} \in \mathbb{R}
+$$
+%
+
+Thus, the solution is finding $\alpha$ values which can be found by taking the derivative with respect to $\alpha$ of the minimization problem which results into 
+$$\alpha_{i} = \frac{v_{i}x_{k}}{v_{i}^{T}Mv_{i}}$$
+Thus the solution is 
+$$x_{k} = x_{0} + \sum_{i=1}^{k}\frac{v_{i}^{T}x_{k}}{v_{i}^{T}Mv_{i}}v_{i}$$
+
 
 \end{enumerate}

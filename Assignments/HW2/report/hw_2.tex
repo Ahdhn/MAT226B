@@ -18,6 +18,7 @@
 \usepackage{wasysym}
 \usepackage{thmtools}
 \usepackage{listings}
+\usepackage{cleveref}
 \usepackage[ruled,vlined, linesnumbered]{algorithm2e}
 
 \setenumerate[0]{label=(\alph*)}
@@ -28,7 +29,11 @@
 %use as \expnumber{2.000000000000000}{+00} to write 2.000000000000000e+00
 \newcommand{\expnumber}[2]{{#1}\mathrm{e}{#2}}
 
-
+%roman numeral.
+%use as \rom{1}
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
 
 \begin{document}
 

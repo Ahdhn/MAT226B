@@ -14,10 +14,10 @@ $$
 
 \item The $k-$iterate of the CG algorithm has the following property
 $$
-\frac{\shortparallel x^{*} - x_{k} \shortparallel_{A}}{\shortparallel x^{*} - x_{0} \shortparallel_{A}} \leq 2 \left( \frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right) ^{k}
+\frac{\parallel x^{*} - x_{k} \parallel_{A}}{\parallel x^{*} - x_{0} \parallel_{A}} \leq 2 \left( \frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right) ^{k}
 $$
 
-where $x^{*}$ is the solution i.e.,  $x^{*} = A^{-1}b$ and $\kappa$ is the condition number of $A$. Given that $\shortparallel x^{*} - x_{0} \shortparallel_{A} = \frac{1}{2}$ and $\kappa = 9$, then to find the minimum number $k$ of iterations that generates $\shortparallel x^{*} - x_{k} \shortparallel_{A} \leq 10^{-12}$ we need to solve for $k$ in the following equation 
+where $x^{*}$ is the solution i.e.,  $x^{*} = A^{-1}b$ and $\kappa$ is the condition number of $A$. Given that $\parallel x^{*} - x_{0} \parallel_{A} = \frac{1}{2}$ and $\kappa = 9$, then to find the minimum number $k$ of iterations that generates $\parallel x^{*} - x_{k} \parallel_{A} \leq 10^{-12}$ we need to solve for $k$ in the following equation 
 $$
 \frac{10^{-12}}{0.5} \leq 2 \left( \frac{\sqrt{9}-1}{\sqrt{9}+1}\right) ^{k}
 $$
@@ -39,9 +39,8 @@ $$
 
 While solving the same system using CG up to $k=40$ iterations requires (ignoring the initial operation to calculate $r_{0}$) 
 $$
-480 n^{2} - 40n - 80 \text{\ flops}
+ \underbrace{2n^2}_\textrm{$r_{0}$} + \underbrace{(480 n^{2} - 40n - 80)}_\textrm{$k$ iterations} \text{\ flops}
 $$
-
 \item Using only the term of the highest power of $n$, the matrix size $n$ for which $k$ CG iteration (where $k=40$) iterations requires only one tenth of the arithmetic operations that Cholesky approach requires can be obtain from 
 $$
 480n^{2} = 0.1*\frac{1}{3}n^{3}
