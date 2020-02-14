@@ -1,6 +1,7 @@
 \newpage
 \section*{Problem 4:}
 \begin{enumerate}
+%http://user.it.uu.se/~matsh/opt/f8/node5.html
 \item Let $M\in \mathbb{R}^{n\times n}\succ 0$, $v_{1}, v_{2}, \dots, v_{k}\mathbb{R}^{n}$ be $k$ linearly independent vectors, and let $x^{*}, x_{0} \in \mathbb{R}^{n}$. To minimize the following 
 $$\parallel x^{*} - x_{k} \parallel_{M} = min_{x\in x_{0}+S} \parallel x^{*} -x||_{M}$$
 where $S = \text{span }\{v_{1}, v_{2}, \dots, v_{k}\}\subset \mathbb{R}^{n}$, we can write $x_{k}$ in the form 
@@ -10,10 +11,39 @@ x_{k} = x_{0} + \alpha_{1}v_{1} + \alpha_{2}v_{2} + \dots + \alpha_{k}v_{k}, \qu
 $$
 %
 
-Thus, the solution is finding $\alpha$ values which can be found by taking the derivative with respect to $\alpha$ of the minimization problem which results into 
-$$\alpha_{i} = \frac{v_{i}x_{k}}{v_{i}^{T}Mv_{i}}$$
-Thus the solution is 
-$$x_{k} = x_{0} + \sum_{i=1}^{k}\frac{v_{i}^{T}x_{k}}{v_{i}^{T}Mv_{i}}v_{i}$$
+Thus, the solution is finding $\alpha$ values which can be found by taking the derivative with respect to $\alpha$ of the minimization problem and equating to zero. We first need we expand$ \parallel x^{*} - x_{k} \parallel_{M} $ such that 
+
+$$
+\parallel x^{*} - x_{k} \parallel_{M}  = (x^{*})^{T} Mx^{*} - 2(x^{*})^{T}Mx_{k} + x_{k}^{T}Mx_{k}
+$$
+
+Note that $(x^{*})^{T} Mx^{*}$ is constant. By taking the derivative, we can compute the coefficient $\alpha_{i}$ as 
+
+$$\alpha_{i} = \frac{v_{i}Mx^{*}}{v_{i}^{T}Mv_{i}}$$
+
+Which satisfy a system of linear equations with a non-singular  matrix since  $M\succ0$
+%Thus the solution is 
+%$$x_{k} = x_{0} + \sum_{i=1}^{k}\frac{v_{i}^{T}x_{k}}{v_{i}^{T}Mv_{i}}v_{i}$$
+
+%\item CG minimizes the following 
+%$$
+%\phi(x) = \frac{1}{2}x^{T}Ax - x^{T}b
+%$$
+%over $\mathcal{S} \subset \mathbb{R}^{n}$ which is the same as minimizing $\parallel x-x^{*}\parallel_{A}$ over $\mathcal{S}$ since 
+
+%$$
+%\parallel x-x^{*}\parallel^{2}_{A} = (x-x^{*})^{T}A(x-x^{*}) = x^{T}Ax - x^{T}Ax^{*} - (x^{*})^{T}Ax + (x^{*})^{T}Ax^{*}
+%$$
+
+%Since $A\succ 0$, then
+
+%$$
+%-x^{T}Ax^{*} - (x^{*})^{T}Ax = -2x^{T}Ax^{*} = -2x^{T}b
+%$$
+%and 
+%$$
+%\parallel x-x^{*} \parallel^2_{A} = 2\phi(x) + (x^{*})^{T}Ax^{*}
+%$$
 
 
 \end{enumerate}
