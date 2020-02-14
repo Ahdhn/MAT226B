@@ -32,7 +32,7 @@ $$F(:,m) = F(:,m) + \frac{c_{1}(y)}{h^{2}}$$
 
 Note that we divide by $h^{2}$ since $F$ will be multiplied by $h^{2}$ and so it cancels out. We substitute the discrete values $x$ and $y$ at grid point $j$ in $b_{0}(x), b_{1}(x), c_{0}(y),\text{\ and \ } c_{1}(x)$ as $x= \frac{j}{m+1}$ and $y= \frac{j}{m+1}$. After adjusting $F$, the same derivation will follow as given in the class. 
 
-\item Function \texttt{FFTSolver()} in \texttt{problem\_3.m} implements the FFT-based solver. 
+\item Function \texttt{FFTSolver()} implements the FFT-based solver. 
 
 \item To determine function $b_{0}$, $b_{1}$, $c_{0}$, and $c_{1}$ we simply plug in their definition in  $v(x,y)$ definition
 
@@ -50,7 +50,7 @@ $f$ can be determined from its definition i.e., $f(x,y) = -\frac{\partial^{2} v(
 & \frac{\partial^{2} v(x,y)}{\partial y^{2}} = -\alpha^{2}\pi^{2} x^{\alpha} cos(\beta \pi x)sin (\gamma \pi y)
 \end{align*}
 
-\item Table~\ref{p4} shows the chosen $m$ for different test cases and the corresponding absolute error. We choose the grid size such that error is always less than 0.0001. \Cref{fig:case1,fig:case2,fig:case3,fig:case4,fig:case5} show the right-hand side function $f$, the exact solution $v$, and the computed solution for all the test cases. 
+\item Figure~\ref{p4} shows the chosen $m$ for different test cases and the corresponding absolute error. We choose the grid size such that error is always less than 0.0001. \Cref{fig:case1,fig:case2,fig:case3,fig:case4,fig:case5} show the right-hand side function $f$, the exact solution $v$, and the computed solution for all the test cases. 
 
 \begin{figure}[tbh]
  \centering    
