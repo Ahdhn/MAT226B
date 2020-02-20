@@ -1,5 +1,89 @@
 \section*{Problem 1:}
 \begin{enumerate}
-\item
+\item The structure of $A$ looks as following 
+$$
+A = 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & * & 0 & 0 & 0 & 0 & 0 & 0\\
+* & 0 & * & 0 & 0 & 0 & 0 & 0\\
+* & 0 & 0 & * & 0 & 0 & 0 & 0\\
+* & 0 & 0 & 0 & \ddots & 0 & 0 & 0\\
+* & 0 & 0 & 0 & 0 & \ddots & 0 & 0\\
+* & 0 & 0 & 0 & 0 & 0 & \ddots & 0\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & *\\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix}
+$$
 
+The Krylov subspace of $K_{k}(A, r_{0}),  \forall k=1,2,\cdots d(A,r_{0})$ where $r_{0} = e_{n}$ is the $n-$th unit vector is 
+$$
+K_{k}(A, r_{0}) = span\{r_{0}, Ar_{0}, A^{2}r_{0}, \cdots, A^{k-1}r_{0} \}
+$$
+which can be determined using the following observation. Since $r_{0} = e_{n}$, then $Ar_{0} = \alpha_{n-1}e_{n-1}$, $Ae_{n-1} = \alpha_{n-1}e_{n-2}$, and so on where $\alpha \in \mathbb{R}$ is some factor depends on the non-zero values in $D$. Thus, $K_{k}(A,r_{0}) = span\{e_{1}, e_{2}, \cdots, e_{k}\}$.
+
+To show that $d(A,r_{0}) = n$, we use the following observation that $Ae_{1} = \alpha e_{1}$. Thus, after the first $n$ unit vector, the vectors produced by multiplication by $A$ are no longer linearly independent and thus the $d(A, r_{0})=n$
+
+\item In exact arithmetic, the number of iteration needed by MR method with starting residual vector $r_{0}$ is $n$. 
+
+\item 
+The sparsity structure of $A^{T}$
+$$
+A^{T} = 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & * & * & \cdots & \cdots & \cdots & * & 1\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & * & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & \ddots & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & \ddots & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & \ddots & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & * & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & * & 0\\
+\end{bmatrix}
+$$
+ And the sparsity structure of $A^{T}A$ 
+$$
+A^{T}A = 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & * & * & \cdots & \cdots & \cdots & * & *\\
+* & * & 0 & 0 & 0 & 0 & 0 & 0\\
+* & 0 & * & 0 & 0 & 0 & 0 & 0\\
+\vdots & 0 & 0 & \ddots & 0 & 0 & 0 & 0\\
+\vdots & 0 & 0 & 0 & \ddots & 0 & 0 & 0\\
+\vdots & 0 & 0 & 0 & 0 & \ddots & 0 & 0\\
+* & 0 & 0 & 0 & 0 & 0 & * & 0\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & *\\
+\end{bmatrix}
+= 
+$$
+
+$$
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & * & * & \cdots & \cdots & \cdots & * & *\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\vdots & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\vdots & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\vdots & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+* & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix} + 
+\setcounter{MaxMatrixCols}{11}
+\begin{bmatrix}
+* & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & * & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & * & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & \ddots & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & \ddots & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & \ddots & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & * & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & *\\
+\end{bmatrix}
+$$
+The first matrix is a rank 2 matrix which has at most two distinct eigenvalue while the second matrix is a diagonal (identity) matrix that has only one distinct eigenvalue. Thus, $A^{T}A$ can have at most three eigenvalues. 
+
+\item 
 \end{enumerate}

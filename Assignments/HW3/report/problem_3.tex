@@ -1,5 +1,36 @@
-\section*{Problem 1:}
+\newpage
+\section*{Problem 3:}
 \begin{enumerate}
-\item
+\item We can derive the formula for $A\textprime$ as follows
+
+\begin{align*}
+& A\textprime = M_{1}^{-1}AM_{2}^{-1} \\
+& A\textprime = (D-F)^{-1}A\left[D^{-1}(D-G)\right]^{-1} \\
+& A\textprime = D(D-F)^{-1}(D_{0}-F-G)(D-G)^{-1} \\
+& A\textprime = D(D-F)^{-1}\left(D_{1}+2D -F-G\right)(D-G)^{-1}\\
+& A\textprime = D(D-F)^{-1}\left[D_{1} + (D-F) + (D-G)\right](D-G)^{-1}\\
+& A\textprime = D\left[(D-F)^{-1}(D-F)(D-G)^{-1} + (D-F)^{-1}\left( (D-G)(D-G)^{-1}+  D_{1}(D-G)^{-1})\right)\right]\\
+&  A\textprime = D\left[(D-G)^{-1} + (D-F)^{-1} \left(I + D_{1}(D-G)^{-1} \right)  \right] \\
+\end{align*}
+We used the fact that $\left(D^{-1}\right)^{-1} = D$, $D_{0} = D_{1} + 2D$, and $(D-F)^{-1}(D-F)  = (D-G)^{-1}(D-G) =I$ in the derivation of the above formula. 
+
+\item We first expand $q\textprime$ such that 
+\begin{align*}
+& q\textprime = A\textprime v\textprime \\
+& q\textprime = D\left[(D-G)^{-1} + (D-F)^{-1} \left(I + D_{1}(D-G)^{-1} \right)  \right]v\textprime \\
+& q\textprime = D\underbrace{\left[ \underbrace{(D-G)^{-1}v\textprime} _{Q_1}+ \underbrace{(D-F)^{-1} \left(\overbrace{Iv\textprime + \overbrace{D_{1} \overbrace{(D-G)^{-1}v\textprime}^{Q_1}}^{Q_2}}_{Q_3} \right) }^{Q_{4}} \right]}_{Q_{5}} \\
+\end{align*}
+
+\begin{itemize}
+\item $Q_{1} = (D-G)^{-1}v\textprime$ is one triangular solve in $Q{1}$
+\item $Q_{2} = D1Q_{2}$ is one multiplication with the diagonal entries of $D_{1}$
+\item $Q_{3} = I v\textprime + Q_{2}$ is a SAXPY
+\item $Q_{4} = (D-F)^{-1}Q_{3}$ is one triangular solve in $Q_{4}$
+\item $Q_{5} = Q_{1} + Q_{4}$ is a SAXPY
+\item $q\textprime = DQ_{5}$ is one multiplication with the diagonal entries of $D$
+\end{itemize} 
+
+\item Computing $Q_{2}$ and the final $q\textprime$ each requires only $n$ flops. Computing $Q_{3}$ and $Q_{4}$ each requires $2n$ flops. Here we assume that $Q_{5}$ will be implemented using some standard routine for SAXPY such that $Q_{1}$ (or $Q{4}$) is multiplied by 1. The triangular solvers each requires multiplying by the diagonal entries (i.e., $n$ flops) and $2m$ flops to multiply and add the off-diagonal entries. \textbf{Thus, the total number of flops is $8n + 4m$ flops}.
+
 
 \end{enumerate}
