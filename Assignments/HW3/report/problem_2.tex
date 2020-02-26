@@ -36,9 +36,11 @@ One solution is $\lambda = 0$. Since $x$ is a (non-trivial) eigenvector, then $\
 & \left(\lambda_{RE}\right)^{2} = (-1) \left(\lambda_{IM}\right)^{2}\\ 
 \end{align*}
 
-where $\lambda_{RE}$ is the real part and $\lambda_{IM}$ is the imaginary part of $\lambda$. The above shows that the eigenvalues $\lambda$ are purely imaginary (in additional to zero eigenvalue).
+where $\lambda_{RE}$ is the real part and $\lambda_{IM}$ is the imaginary part of $\lambda$.  Besides the zero eigenvalue, the above shows that the eigenvalues $\lambda$ are purely imaginary since $\lambda_{IM}$ can not be zero. Also, the eigenvalues comes in as conjugate pairs since $A$ is a real matrix. 
 
-\item 
+\item From the lectures notes, we have the following fact about Krylov subspace. If $A$ is diagonalizable, then $d(A,r_{0})$ is the minimum number of eigenvectors in the eigendecomposition of $A$. From (b), since the eigenvalues comes in conjugate pairs, then the number of eigenvectors is even and thus $d(A,r_{0})$ is even. 
+
+Now we need to prove that $A$ is diagonalizable. Since $A$ is a normal matrix i.e., $A^{T}A = AA^{T} = -AA $, then it must be diagonalizable (following the Spectral theorem). 
 
 
 
