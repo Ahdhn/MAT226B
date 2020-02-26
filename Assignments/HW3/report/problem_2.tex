@@ -1,5 +1,46 @@
-\section*{Problem 1:}
+\newpage
+\section*{Problem 2:}
 \begin{enumerate}
-\item
+\item If $A \in \mathbb{R}^{n\times n}$ is a skew-symmetric, then $x^{T}Ax =0$ since the diagonal elements of the $A$ by definition are zero. We can show that for $A^{2j+1}$ for $j=0,1,2, \dots$ (i.e., raising $A$ to an odd power) will result into a skew-symmetric. 
+
+For a skew-symmetric matrix $A$ (i.e., $A^{T} = -A$), we have 
+
+\begin{align*}
+& A^{m} = (-A^{T})^{m}  \\
+& A.A.A\dots=(-1)^{m}.A^{T}.A^{T}.A^{T}\dots =(-1)^{m}A^{m} \\
+\end{align*}
+
+
+Thus, if $m$ is odd, then $A^{m} = -(A^{T})^{m} = -(A^{m})^{T}$ and thus the resulting matrix is skew-symmetric. Since any skew-symmetric matrix has zero diagonal elements, we can deduce that 
+$$
+x^{T}A^{2j+1}x = 0\quad \forall j=0,1,2\dots \text{ and } x\in \mathbb{R}^{n}
+$$
+
+\item Find the eigenvalues of $A$ can be done by solving the following for $\lambda$
+
+\begin{align*}
+&Ax = \lambda x\\
+\end{align*}
+
+From (a), we can multiply the above by $x^{T}$ to get 
+
+\begin{align*}
+& x^{T}Ax = \lambda x = x^{T}\lambda x = \lambda \parallel x \parallel^{2} = 0\\
+\end{align*}
+
+One solution is $\lambda = 0$. Since $x$ is a (non-trivial) eigenvector, then $\parallel x \parallel^{2} \neq 0$. However, if we consider $\lambda$ as an imaginary, then we can write the above as
+
+\begin{align*}
+& (\lambda_{RE} + i \lambda_{IM})  \parallel x \parallel^{2} = 0\\
+& -\lambda_{RE}\parallel x \parallel^{2} = i \lambda_{IM}\parallel x \parallel^{2}\\ 
+& \left(\lambda_{RE}\right)^{2} = (-1) \left(\lambda_{IM}\right)^{2}\\ 
+\end{align*}
+
+where $\lambda_{RE}$ is the real part and $\lambda_{IM}$ is the imaginary part of $\lambda$. The above shows that the eigenvalues $\lambda$ are purely imaginary (in additional to zero eigenvalue).
+
+\item 
+
+
+
 
 \end{enumerate}
