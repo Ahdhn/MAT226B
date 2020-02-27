@@ -85,5 +85,19 @@ $$
 $$
 The first matrix is a rank 2 matrix which has at most two distinct eigenvalue while the second matrix is a diagonal (identity) matrix that has only one distinct eigenvalue. Thus, $A^{T}A$ can have at most three eigenvalues. 
 
-\item ????????????????
+\item First we note that CGNE method tries to find the $k-$iterate in the following Krylov subspace 
+$$
+x_{k} \in x_{0} + span\{ A^{T}r_{0}, (A^{T}A)A^{T}r_{0}, \dots, (A^{T}A)^{k-1}A^{T}r_{0} \}
+$$
+While Craig's method minimizes the 2-norm of the error $x-x_{k}$ over the following Krylov subspace
+$$
+x_{k} \in x_{0} + span\{ A^{T}r_{0}, A^{T}(AA^{T})r_{0}, \dots, A^{T}(AA^{T})^{k-1}r_{0} \}
+$$
+The two spaces are the same. 
+
+We recall from the lecture notes that one of the MR properties is 
+$$
+\frac{\parallel r_{k} \parallel_{2}}{\parallel r_{0} \parallel_{2}} \leq \kappa_{2}(U) \min_{\varphi \in\Pi(k)} \max_{j=1,\dots	n}|\varphi(\lambda_{j})|
+$$
+Since the convergence is a function of the eigenvalues and there are only three distinct eigenvalues, then both CGNE and Craig's method needs only \textbf{three iterations} to find the solution. 
 \end{enumerate}
