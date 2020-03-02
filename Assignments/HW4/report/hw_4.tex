@@ -1,0 +1,78 @@
+\documentclass[12pt] {article}
+\usepackage{times}
+\usepackage[margin=1in,bottom=1in,top=0.6in]{geometry}
+
+\usepackage{hhline}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[inline,shortlabels]{enumitem}%enumerate with letters
+\usepackage{mathrsfs} 
+\usepackage[square,numbers]{natbib}
+\usepackage{graphicx}
+\bibliographystyle{unsrtnat}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{amsfonts,amsmath, color, fullpage, graphicx, mathtools, empheq, amsthm, amssymb}
+\usepackage{wasysym}
+\usepackage{thmtools}
+\usepackage{listings}
+\usepackage[ruled,vlined, linesnumbered]{algorithm2e}
+
+\setenumerate[0]{label=(\alph*)}
+
+\usepackage[framed,numbered,autolinebreaks,useliterate]{../../mcode}
+
+%To write numbers in scientific notation nicely
+%use as \expnumber{2.000000000000000}{+00} to write 2.000000000000000e+00
+\newcommand{\expnumber}[2]{{#1}\mathrm{e}{#2}}
+
+
+
+\begin{document}
+
+\title{MAT 226B – Large Scale Matrix Computation \\ Homework 4}
+\author{Ahmed Mahmoud}
+\date{March, 12th 2020} 
+
+\maketitle
+
+
+
+
+%============Table========
+%\begin{figure}[tbh]
+% \centering    
+%\begin{tabular}{ |p{4cm}|| p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+% \hline
+% & Processor 1 &  Processor 2  & Processor 3 & Processor 4\\ \hhline{|=|=|=|=|=|}
+% \hline
+% Performance          &$1.08$        &$1.425$       &\textbf{1.52}  &   \\
+% \hline
+%\end{tabular} 
+%\caption{Metric table for the four processors}
+%   \label{tab:metric}
+%\end{figure} 
+%============Figure========
+%\begin{figure}[!tbh]
+%\centering        
+%   \subfloat {\includegraphics[width=0.65\textwidth]{fig2_4.png}}
+%   \caption{ }
+%   \label{fig:fig}
+%\end{figure}
+%============Code========
+%\begin{lstlisting}
+%function [f,g] = linear_regression(theta, X,y)
+%end
+%\end{lstlisting}
+
+
+\input{problem_1}
+\input{problem_2}
+\input{problem_3}
+\input{problem_4}
+
+
+
+\end{document}
