@@ -1,5 +1,54 @@
+\newpage
 \section*{Problem 2:}
-\begin{enumerate}
-\item
 
-\end{enumerate}
+The function \texttt{arnoldi\_process} in \texttt{problem\_2.m} implements Arnoldi process. It takes matrix $A$, initial $r$ vector, and \texttt{KMAX} value and outputs matrices $H_{k}$ and $V_{K}$. We test the function with $k=5, 10, \text{\ and\ }20$. Table~\ref{tab:h_k_eig} shows the eignevalues of $H_{k}$ for different values of $k$. Table~\ref{tab:a_eig} shows the eignevalues of $A$. To compare between the eigenvalue of $H_{20}$ and $A$'s eigenvalues, we computed $\parallel A\_eig - H_{20}\_eig\parallel =\expnumber{2.022960706546113}{-14}$
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ |p{1cm}|| p{10cm}|}
+\hline
+ K & Eigenvalues \\ \hhline{|=|=|}   
+\hline
+5 & $\expnumber{-1.667643118967301}{+00} + \expnumber{3.322698092379202}{+00i}$\\
+  &	$\expnumber{1.122189729586331}{+00} + \expnumber{- 2.935868201795706}{+00i}$\\
+  &	$\expnumber{-2.454291098365838}{+00} + \expnumber{- 1.034091783975195}{-01i}$\\
+  &	$\expnumber{1.901983203411739}{+00} + \expnumber{2.938354695246812}{-02i}$\\
+  &	$\expnumber{-1.488418331702275}{-01} + \expnumber{4.856460403443859}{-03i}$ \\  
+\hline  
+10& $\expnumber{-1.284055777449226}{+00} + \expnumber{+ 3.812474971159054}{+00i}$\\
+  &	$\expnumber{ 2.481430445455568}{-01} + \expnumber{- 3.792088063628674}{+00i}$\\
+  &	$\expnumber{ 2.484678533435320}{+00} + \expnumber{- 2.158804713951516}{+00i}$\\
+  &	$\expnumber{-9.594670448581000}{-01} + \expnumber{- 2.797385858005139}{+00i}$\\
+  &	$\expnumber{-1.865849533089461}{+00} + \expnumber{+ 2.203044871147163}{+00i}$ \\  
+  &	$\expnumber{-2.769085996727914}{+00} + \expnumber{- 4.783604953147819}{-01i}$ \\       
+\hline  
+20& $\expnumber{-1.246365732148964}{+00} + \expnumber{+ 3.879484437687161}{+00i}$\\
+  &	$\expnumber{ 1.251730623491198}{-01} + \expnumber{- 3.705917327586333}{+00i}$\\
+  &	$\expnumber{ 2.594180629560022}{+00} + \expnumber{- 2.284902242884260}{+00i}$\\
+  &	$\expnumber{-1.983514535906369}{+00} + \expnumber{+ 2.443522984313272}{+00i}$\\
+  &	$\expnumber{ 3.000394334727364}{+00} + \expnumber{- 9.028020730501802}{-01i}$ \\  
+  &	$\expnumber{-8.152087361523789}{-01} + \expnumber{- 2.850024263184166}{+00i}$ \\  
+\hline  
+\end{tabular} 
+\caption{$H_{k}$ Eigenvalues}
+   \label{tab:h_k_eig}
+\end{figure} 
+
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{10cm}|}
+\hline
+ Eigenvalues \\ \hhline{|=|}   
+\hline
+$\expnumber{-1.246365732148965}{+00} + \expnumber{+ 3.879484437687162}{+00i}$\\
+$\expnumber{ 1.251730623491239}{-01} + \expnumber{- 3.705917327586323}{+00i}$\\
+$\expnumber{ 2.594180629560029}{+00} + \expnumber{- 2.284902242884256}{+00i}$\\
+$\expnumber{-1.983514535906377}{+00} + \expnumber{+ 2.443522984313265}{+00i}$\\
+$\expnumber{ 3.000394334727376}{+00} + \expnumber{- 9.028020730501798}{-01i}$\\  
+$\expnumber{-8.152087361523785}{-01} + \expnumber{- 2.850024263184167}{+00i}$\\  
+\hline  
+\end{tabular} 
+\caption{$A$ Eigenvalues}
+   \label{tab:a_eig}
+\end{figure} 
