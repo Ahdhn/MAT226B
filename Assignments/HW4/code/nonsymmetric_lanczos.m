@@ -11,7 +11,7 @@ function [Tk] = nonsymmetric_lanczos(A, r, c, kmax)
     
     for k =1:kmax        
         delta_k = wk'*vk;
-        if delta_k ==0
+        if abs(delta_k) == 0
             break;
         end
         
@@ -41,5 +41,6 @@ function [Tk] = nonsymmetric_lanczos(A, r, c, kmax)
         
         delta_k_1 = delta_k;
     end        
-    Tk = sparse(diag(alpha(1:k),0)+diag(beta(2:k),-1)+diag(beta(2:k),1));
+    eta = alpha(1:k).*( gamma(1:k) - gamma(2:k+1) );
+    Tk = diag(alpha(1:k),0)+diag(beta(2:k),-1)+diag(eta(2:k),1);
 end
