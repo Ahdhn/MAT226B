@@ -1,6 +1,204 @@
 \newpage
 \section*{Problem 3:}
 \begin{enumerate}
-\item
+\item Function \texttt{hermitian\_lanczos} implements the Hermitian Lanczos process where it takes the matrix $A$, vector $r$, and \texttt{KMAX} parameter and output $T_{k}$ tridiagonal matrix in sparse format. We used this function to approximate eigenvalues of $A$ from \texttt{make\_3d\_laplacian} function using $k=7$. Table~\ref{tab:app_eig_7} shows the results where the first two columns show the exact eigenvalues of $A$ (computed from the provided function) along its multiplicity and last column shows the approximate eigenvalues. We can see that the approximate solution is able to capture all the eigenvalues with very high accuracy.
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ |p{5cm}| p{2cm}|| p{5cm}|}
+\hline
+ Exact Eigenvalues  & Multiplicity & Approximate Eigenvalues \\ \hhline{|=|=|=|}   
+$\expnumber{1.757359312880715}{+00}$ & 1& $\expnumber{1.757359312880715}{+00}$ \\
+$\expnumber{3.171572875253810}{+00}$ &3 & $\expnumber{3.171572875253810}{+00}$ \\
+$\expnumber{4.585786437626905}{+00}$ &6 & $\expnumber{4.585786437626905}{+00}$ \\
+$\expnumber{6.000000000000000}{+00}$ & 7& $\expnumber{6.000000000000002}{+00}$ \\
+$\expnumber{7.414213562373095}{+00}$&6 & $\expnumber{7.414213562373095}{+00}$ \\
+$\expnumber{8.828427124746190}{+00}$ &3 & $\expnumber{8.828427124746192}{+00}$ \\
+$\expnumber{1.024264068711928}{+01}$ &1 & $\expnumber{1.024264068711929}{+01}$ \\
+\hline
+\end{tabular} 
+\caption{Exact and approximate eigenvalues using Hermitian Lanczos process}
+   \label{tab:app_eig_7}
+\end{figure}
+
+\item We used \texttt{hermitian\_lanczos} to compute the approximate eigenvalues for the 262144 \times 262144 matrix from \texttt{make\_3d\_laplacian(64)}. Tables~\ref{tab:app_eig_100,tab:app_eig_200,tab:app_eig_400,tab:app_eig_800,tab:app_eig_1200, tab:app_eig_1600,tab:app_eig_2000} show the 10 smallest and 10 largest approximated eigenvalues. 
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}   
+\hline
+$\expnumber{1.422787575075167}{-02}$ & $\expnumber{1.170222368514153}{+01}$ \\  
+$\expnumber{2.522292134967839}{-02}$ & $\expnumber{1.175506886438500}{+01}$ \\  
+$\expnumber{3.720946521956244}{-02}$ & $\expnumber{1.180683457939747}{+01}$ \\  
+$\expnumber{6.015341020592301}{-02}$ & $\expnumber{1.184896392339356}{+01}$ \\  
+$\expnumber{8.407846117839080}{-02}$ & $\expnumber{1.188540931980204}{+01}$ \\  
+$\expnumber{1.168498457907536}{-01}$ & $\expnumber{1.191749739736500}{+01}$ \\  
+$\expnumber{1.581734700307590}{-01}$ & $\expnumber{1.194638621492721}{+01}$ \\  
+$\expnumber{1.995732825474702}{-01}$ & $\expnumber{1.196512279467138}{+01}$ \\  
+$\expnumber{2.466691832816189}{-01}$ & $\expnumber{1.198055273500129}{+01}$ \\  
+$\expnumber{3.011244810109077}{-01}$ & $\expnumber{1.199293004521624}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 100$}
+   \label{tab:app_eig_100}
+\end{figure} 
+
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}   
+\hline
+$\expnumber{7.006926067695284}{-03}$ & $\expnumber{1.191194541966088}{+01}$ \\  
+$\expnumber{1.400816296330363}{-02}$ & $\expnumber{1.192367820060319}{+01}$ \\  
+$\expnumber{2.104749654401042}{-02}$ & $\expnumber{1.193815033138952}{+01}$ \\  
+$\expnumber{2.644416419643677}{-02}$ & $\expnumber{1.194943725586547}{+01}$ \\  
+$\expnumber{3.252921177956383}{-02}$ & $\expnumber{1.195823115974695}{+01}$ \\  
+$\expnumber{4.248144987518579}{-02}$ & $\expnumber{1.196722905407029}{+01}$ \\  
+$\expnumber{5.158180541911261}{-02}$ & $\expnumber{1.197279443138257}{+01}$ \\  
+$\expnumber{6.175958581860198}{-02}$ & $\expnumber{1.197897280487774}{+01}$ \\  
+$\expnumber{7.373377938324976}{-02}$ & $\expnumber{1.198599186623671}{+01}$ \\  
+$\expnumber{8.527634111033579}{-02}$ & $\expnumber{1.199299336087879}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 200$}
+   \label{tab:app_eig_200}
+\end{figure} 
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}    
+\hline
+$\expnumber{7.006639006043782}{-03}$ & $\expnumber{1.195105825040107}{+01}$ \\  
+$\expnumber{1.400782323540659}{-02}$ & $\expnumber{1.195568924396476}{+01}$ \\  
+$\expnumber{2.100900746475762}{-02}$ & $\expnumber{1.195806895929420}{+01}$ \\  
+$\expnumber{2.565829376859278}{-02}$ & $\expnumber{1.196033932970904}{+01}$ \\  
+$\expnumber{2.801019169415529}{-02}$ & $\expnumber{1.196734052200119}{+01}$ \\  
+$\expnumber{3.265947799840193}{-02}$ & $\expnumber{1.197198980830585}{+01}$ \\  
+$\expnumber{3.966069944862968}{-02}$ & $\expnumber{1.197434170623140}{+01}$ \\  
+$\expnumber{4.193108831261764}{-02}$ & $\expnumber{1.197899099253526}{+01}$ \\  
+$\expnumber{4.431079048315387}{-02}$ & $\expnumber{1.198599217676459}{+01}$ \\  
+$\expnumber{4.897191625334762}{-02}$ & $\expnumber{1.199299336099394}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 400$}
+   \label{tab:app_eig_400}
+\end{figure} 
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}    
+\hline
+$\expnumber{7.006639006040011}{-03}$ & $\expnumber{1.197198980830589}{+01}$ \\  
+$\expnumber{7.006639006045063}{-03}$ & $\expnumber{1.197434170555307}{+01}$ \\  
+$\expnumber{1.400782323539451}{-02}$ & $\expnumber{1.197434170623140}{+01}$ \\  
+$\expnumber{1.400782323540438}{-02}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{2.100900746475027}{-02}$ & $\expnumber{1.197899099253527}{+01}$ \\  
+$\expnumber{2.100900746475296}{-02}$ & $\expnumber{1.198599217676461}{+01}$ \\  
+$\expnumber{2.565829371816093}{-02}$ & $\expnumber{1.198599217676461}{+01}$ \\  
+$\expnumber{2.565829376859185}{-02}$ & $\expnumber{1.199293916949044}{+01}$ \\  
+$\expnumber{2.801018851772900}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+$\expnumber{2.801019169410766}{-02}$ & $\expnumber{1.199299336099397}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 800$}
+   \label{tab:app_eig_800}
+\end{figure} 
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}   
+\hline
+$\expnumber{7.006639006034983}{-03}$ & $\expnumber{1.197899099253524}{+01}$ \\  
+$\expnumber{7.006639006042774}{-03}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{7.006639006050910}{-03}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{7.006642433917978}{-03}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{1.400782323538701}{-02}$ & $\expnumber{1.198599217676461}{+01}$ \\  
+$\expnumber{1.400782323539747}{-02}$ & $\expnumber{1.198599217676462}{+01}$ \\  
+$\expnumber{1.400782323539999}{-02}$ & $\expnumber{1.199299336099394}{+01}$ \\  
+$\expnumber{2.100900746475157}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+$\expnumber{2.100900746475692}{-02}$ & $\expnumber{1.199299336099397}{+01}$ \\  
+$\expnumber{2.100900746476310}{-02}$ & $\expnumber{1.199299336099399}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 1200$}
+   \label{tab:app_eig_1200}
+\end{figure} 
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}     
+\hline
+$\expnumber{7.006639006034724}{-03}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{7.006639006037083}{-03}$ & $\expnumber{1.198599217676456}{+01}$ \\  
+$\expnumber{7.006639006037985}{-03}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{7.006639006044512}{-03}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{7.006639006047808}{-03}$ & $\expnumber{1.198599217676461}{+01}$ \\  
+$\expnumber{1.400782323539137}{-02}$ & $\expnumber{1.199299336099392}{+01}$ \\  
+$\expnumber{1.400782323539370}{-02}$ & $\expnumber{1.199299336099395}{+01}$ \\  
+$\expnumber{1.400782323539474}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+$\expnumber{1.400782323540451}{-02}$ & $\expnumber{1.199299336099397}{+01}$ \\  
+$\expnumber{1.412781215190661}{-02}$ & $\expnumber{1.199299336099398}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 1600$}
+   \label{tab:app_eig_1600}
+\end{figure} 
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}    
+\hline
+$\expnumber{7.006639006032009}{-03}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{7.006639006034958}{-03}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{7.006639006035550}{-03}$ & $\expnumber{1.198599217676461}{+01}$ \\  
+$\expnumber{7.006639006037528}{-03}$ & $\expnumber{1.198599260901220}{+01}$ \\  
+$\expnumber{7.006639006037725}{-03}$ & $\expnumber{1.199299336099394}{+01}$ \\  
+$\expnumber{7.006639006042897}{-03}$ & $\expnumber{1.199299336099395}{+01}$ \\  
+$\expnumber{1.400782323536894}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+$\expnumber{1.400782323539092}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+$\expnumber{1.400782323539872}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+$\expnumber{1.400782323540259}{-02}$ & $\expnumber{1.199299336099397}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Approximate Eigenvalues using $K = 2000$}
+   \label{tab:app_eig_2000}
+\end{figure} 
+
+
+\begin{figure}[tbh]
+ \centering    
+\begin{tabular}{ ||p{6cm}||p{6cm}|}
+\hline
+ Smallest Eigenvalues & Largest Eigenvalues \\ \hhline{|=|=|}    
+\hline
+$\expnumber{7.006639006040594}{-03}$ & $\expnumber{1.197434170623141}{+01}$ \\  
+$\expnumber{1.400782323539662}{-02}$ & $\expnumber{1.197434170623141}{+01}$ \\  
+$\expnumber{1.400782323539662}{-02}$ & $\expnumber{1.197434170623141}{+01}$ \\  
+$\expnumber{1.400782323539662}{-02}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{2.100900746475265}{-02}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{2.100900746475265}{-02}$ & $\expnumber{1.197899099253525}{+01}$ \\  
+$\expnumber{2.100900746475265}{-02}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{2.565829376859075}{-02}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{2.565829376859163}{-02}$ & $\expnumber{1.198599217676460}{+01}$ \\  
+$\expnumber{2.565829376859163}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\  
+\hline  
+\end{tabular} 
+\caption{Exact Eigenvalues}
+   \label{tab:exact_64}
+\end{figure} 
 
 \end{enumerate}

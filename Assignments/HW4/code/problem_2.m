@@ -21,7 +21,7 @@ for k = 1:length(ks)
     H_eigs
     fprintf('\n=================\n');
     if ks(k) == 20
-        fprintf('\n Norm of H_20 and A eigenvalues =  \n');
+        fprintf('\n || H_20_eig - A_eig|| =  \n');
         norm(H_eigs-A_eigs)
     end
 end
