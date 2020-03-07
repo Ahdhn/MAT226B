@@ -10,4 +10,4 @@ format long e;
 load('HW4_P4a.mat');
 
 T = nonsymmetric_lanczos(A, r, c, 20);
-norm(eig(T) - eig(A))
+norm(sort(eig(T)) - sort(eig(A)))
