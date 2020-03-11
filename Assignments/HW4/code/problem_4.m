@@ -1,5 +1,5 @@
 set(0,'DefaultFigureWindowStyle','docked');
-%clc;
+clc;
 clear;
 close all;
 clf;
@@ -10,4 +10,4 @@ format long e;
 load('HW4_P4a.mat');
 
 T = nonsymmetric_lanczos(A, r, c, 20);
-norm(sort(eig(T)) - sort(eig(A)))
+norm(sort(abs(eig(T))) - sort(abs(eig(A))))

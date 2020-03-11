@@ -17,14 +17,14 @@ function [Tk] = nonsymmetric_lanczos(A, r, c, kmax)
         V(:,k) = vk;%
         W(:,k) = wk;%
         
-        delta_k = transpose(wk)*vk; %wk'*vk;%
+        delta_k = transpose(wk)*vk; 
         
         if abs(delta_k) == 0
             break;
         end
         
         q = A*vk;
-        s = transpose(A)*wk; %A'*wk;%
+        s = transpose(A)*wk;
         
         if k > 1 
             q = q - (gamma(k)*delta_k/delta_k_1).*vk_1;            
@@ -33,7 +33,7 @@ function [Tk] = nonsymmetric_lanczos(A, r, c, kmax)
             transpose(s)*vk_1
         end
         
-        alpha(k) = transpose(wk)*q/delta_k;%wk'*q/delta_k;   
+        alpha(k) = transpose(wk)*q/delta_k;  
         
         q = q - alpha(k)*vk;        
         s = s - alpha(k)*wk; 
@@ -56,5 +56,5 @@ function [Tk] = nonsymmetric_lanczos(A, r, c, kmax)
     end        
     eta = alpha(1:k).*( gamma(1:k) - gamma(2:k+1) );
     Tk = diag(alpha(1:k),0)+diag(beta(2:k),-1)+diag(eta(2:k),1);
-    DD = W'*V;
+    DD = transpose(W)*V;
 end
