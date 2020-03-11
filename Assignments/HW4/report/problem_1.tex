@@ -1,5 +1,41 @@
 \section*{Problem 1:}
 \begin{enumerate}
-\item
+\item The breakdown in nonsymmetric Lanczos process occurs
+\begin{itemize}
+\item when $v_{k}$ or $w_{k}$ is a zero vector. This is the case where $V$ spans $K_{k}
+\left\lbrace A,r \right\rbrace$ or $W$ spans $K_{k}\left\lbrace A^{T},c \right\rbrace$. The is a termination condition and occurs when $k$ reaches $d(A,r)$ or $d(A^{T},c)$. Since, $d(A,r) \geq 2$ and $d(A^{T},c) \geq 2$, then this is not the case. 
+
+\item when $w_{k}^{T}v_{k} =0$. Since $v_{k}$ and $w_{k}$ is the normalized $r$ and $c$ respectively for $k=1$. Then, $w_{k}^{T}v_{k} = 0$ for $k=1$ and breakdown will occur since $w_{k}^{T}v_{k}$ is used as the denominator to compute $\alpha_{k}$ leading to division by zero. 
+\end{itemize}
+
+\item At step $k = 2$, a breakdown will occur if 
+$$
+\delta_{2} = w_{2}^{T}v_{2} = 0
+$$
+Assuming that $r$ and $c$ are normalized (i.e., $\parallel r\parallel_{2} = \parallel c\parallel_{2} =1$), we can re-write the above condition as 
+
+$$
+w_{2}^{T}v_{2} = (A^{T}w_{1} - \alpha_{1}w_{1})^{T} (Av_{1} - \alpha_{1}v_{1}) = 0
+$$
+That could happens if  $(A^{T}w_{1} - \alpha_{1}w_{1})^{T}=0$ or $Av_{1} = \alpha_{1}v_{1}$. Thus, 
+
+$$
+Av_{1} = \alpha_{1}v_{1}
+$$
+$$
+Ar = \alpha_{1}r
+$$
+$$
+Ar = \frac{c^{T}Ar}{c^{T}r}r
+$$
+$$
+(c^{T}r)(Ar) = (c^{T}Ar)(r)
+$$
+$$
+c^{T}r)(A) = (c^{T}Ar)
+$$
+$$
+(c^{T}r)(A)(c^{T}Ar) = (c^{T}Ar)^{2}
+$$
 
 \end{enumerate}

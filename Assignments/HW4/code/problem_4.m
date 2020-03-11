@@ -1,5 +1,5 @@
 set(0,'DefaultFigureWindowStyle','docked');
-clc;
+%clc;
 clear;
 close all;
 clf;
