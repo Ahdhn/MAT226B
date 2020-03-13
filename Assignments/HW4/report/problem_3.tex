@@ -1,7 +1,7 @@
 \newpage
 \section*{Problem 3:}
 \begin{enumerate}
-\item Function \texttt{hermitian\_lanczos} implements the Hermitian Lanczos process where it takes the matrix $A$, vector $r$, and \texttt{KMAX} parameter and output $T_{k}$ tridiagonal matrix in sparse format. We used this function to approximate eigenvalues of $A$ from \texttt{make\_3d\_laplacian} function using $k=7$. Table~\ref{tab:app_eig_7} shows the results where the first two columns show the exact eigenvalues of $A$ (computed from the provided function) along its multiplicity and last column shows the approximate eigenvalues. We can see that the approximate solution is able to capture all the eigenvalues with very high accuracy.
+\item Function \texttt{hermitian\_lanczos} implements the Hermitian Lanczos process where it takes the matrix $A$, vector $r$, and \texttt{KMAX} parameter and output $T_{k}$ tridiagonal matrix in sparse format. We used this function to approximate eigenvalues of $A$ from \texttt{make\_3d\_laplacian} function using $k=7$. Table~\ref{tab:eig7} shows the results where the first two columns show the exact eigenvalues of $A$ (computed from the provided function) along its multiplicity and last column shows the approximate eigenvalues. We can see that the approximate solution is able to capture all the eigenvalues with very high accuracy.
 
 \begin{figure}[tbh]
  \centering    
@@ -18,12 +18,12 @@ $\expnumber{1.024264068711928}{+01}$ &1 & $\expnumber{1.024264068711929}{+01}$ \
 \hline
 \end{tabular} 
 \caption{Exact and approximate eigenvalues using Hermitian Lanczos process}
-   \label{tab:app_eig_7}
+   \label{tab:eig7}
 \end{figure}
 
-\item We used \texttt{hermitian\_lanczos} to compute the approximate eigenvalues for the $262144 \times 262144$ matrix from \texttt{make\_3d\_laplacian(64)}. Tables~\ref{tab:app_eig_100,tab:app_eig_200,tab:app_eig_400,tab:app_eig_800,tab:app_eig_1200, tab:app_eig_1600,tab:app_eig_2000} show the 10 smallest and 10 largest approximated eigenvalues. Table~\ref{tab:exact_64} shows the 10 smallest and 10 largest exact eigenvalues. 
+\item We used \texttt{hermitian\_lanczos} to compute the approximate eigenvalues for the $262144 \times 262144$ matrix from \texttt{make\_3d\_laplacian(64)}. Table~\ref{tab:eig100}, Table~\ref{tab:eig200}, Table~\ref{tab:eig400}, Table~\ref{tab:eig800}, Table~\ref{tab:eig1200}, Table~\ref{tab:eig1600}, and Table~\ref{tab:eig2000} show the 10 smallest and 10 largest approximated eigenvalues. Table~\ref{tab:exact64} shows the 10 smallest and 10 largest exact eigenvalues. Due to the multiplicity in exact eigenvalues and round of error in approximate one, it is harder to check the accuracy due to repeated eigenvalues. 
 
-\begin{figure}[tbh]
+\begin{figure} 
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -42,11 +42,11 @@ $\expnumber{3.011244810109077}{-01}$ & $\expnumber{1.199293004521624}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 100$}
-   \label{tab:app_eig_100}
+   \label{tab:eig100}
 \end{figure} 
 
 
-\begin{figure}[tbh]
+\begin{figure} 
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -65,10 +65,10 @@ $\expnumber{8.527634111033579}{-02}$ & $\expnumber{1.199299336087879}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 200$}
-   \label{tab:app_eig_200}
+   \label{tab:eig200}
 \end{figure} 
 
-\begin{figure}[tbh]
+\begin{figure} 
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -87,10 +87,10 @@ $\expnumber{4.897191625334762}{-02}$ & $\expnumber{1.199299336099394}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 400$}
-   \label{tab:app_eig_400}
+   \label{tab:eig400}
 \end{figure} 
 
-\begin{figure}[tbh]
+\begin{figure} 
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -109,10 +109,10 @@ $\expnumber{2.801019169410766}{-02}$ & $\expnumber{1.199299336099397}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 800$}
-   \label{tab:app_eig_800}
+   \label{tab:eig800}
 \end{figure} 
 
-\begin{figure}[tbh]
+\begin{figure} 
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -131,10 +131,10 @@ $\expnumber{2.100900746476310}{-02}$ & $\expnumber{1.199299336099399}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 1200$}
-   \label{tab:app_eig_1200}
+   \label{tab:eig1200}
 \end{figure} 
 
-\begin{figure}[tbh]
+\begin{figure}
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -153,10 +153,10 @@ $\expnumber{1.412781215190661}{-02}$ & $\expnumber{1.199299336099398}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 1600$}
-   \label{tab:app_eig_1600}
+   \label{tab:eig1600}
 \end{figure} 
 
-\begin{figure}[tbh]
+\begin{figure}
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -175,11 +175,11 @@ $\expnumber{1.400782323540259}{-02}$ & $\expnumber{1.199299336099397}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Approximate Eigenvalues using $K = 2000$}
-   \label{tab:app_eig_2000}
+   \label{tab:eig2000}
 \end{figure} 
 
 
-\begin{figure}[tbh]
+\begin{figure} 
  \centering    
 \begin{tabular}{ ||p{6cm}||p{6cm}|}
 \hline
@@ -198,7 +198,7 @@ $\expnumber{2.565829376859163}{-02}$ & $\expnumber{1.199299336099396}{+01}$ \\
 \hline  
 \end{tabular} 
 \caption{Exact Eigenvalues}
-   \label{tab:exact_64}
+   \label{tab:exact64}
 \end{figure} 
 
 \end{enumerate}

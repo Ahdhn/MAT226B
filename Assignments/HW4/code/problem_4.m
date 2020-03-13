@@ -5,10 +5,13 @@ close all;
 clf;
 format long e;
 
-global A U D1 L L_t U_t D0;
+global A U L D0 A_prime;
 
 mat_vec = @(x) A*x;
 mat_trans_vec = @(x) transpose(A)*x;
+
+mat_vec_prime = @(x) A_prime*x;
+mat_trans_vec_prime = @(x) transpose(A_prime)*x;
 
 %a)
 fprintf('\n ########## Part a):\n');
@@ -27,7 +30,7 @@ fprintf('\n norm(eig(T20)-eig(A)) = %e\n',...
 
 %b)
 fprintf('\n\n ########## Part b):\n');
-%load('HW4_P4b.mat');
+load('HW4_P4b.mat');
 
 
 %preconditioner setup
@@ -36,33 +39,29 @@ F = -tril(A,-1);
 G = -triu(A,1);
 L = D0 - F;
 U = D0 - G;
-D1 = D0 - 2*D0;
+I = speye(length(r));
+inv_L = L\I;
+inv_U = U\I;
 
-L_t = transpose(D0) - transpose(F);
-U_t = transpose(D0) - transpose(G);
+A_prime = inv_L*A*inv(inv(D0)*U);
 
-rr = mat_vec_prime(r);
+eig_a_prime = eig(full(A_prime));
 
-A_prime_trans = transpose(A_prime);
-
-rr = mat_transpose_vec_prime(r);
-rrr = A_prime_trans*r;
-
-function out = mat_vec_prime(z)
-    global U L D0;
-    us = U\z;
-	d = diag(-D0).*us;
-	v = z + d;
-	ls = L\v;
-	sum = ls + us;
-	out = D0*sum;            
+k_vector = [20 60 100 200 300];
+for i = 1:k_vector
+    k = k_vector(i);
+    plot(eig_a_prime,'*');
+    T = nonsymmetric_lanczos(mat_vec_prime,mat_trans_vec_prime, r, c, k);
+    [V, H] = arnoldi_process(A_prime, r, k);
+    eig_t = eig(T);
+    eig_h = eig(H(1:k,1:k));
+    hold on
+    plot(eig_t,'o');
+    hold on
+    HH = plot(eig_h,'d');
+    legend('eig(A'')', 'Nonsymmetric Lanczos eig(T)','Arnoldi eig(H)','Location','best');
+    hold off
+    fileName = sprintf('p4b_k_%d',k,'.png');
+    saveas(HH, fileName);
 end 
 
-function out = mat_transpose_vec_prime(z)    
-    global U_t L_t D0 D1
-    Q1 = U_t\z;
-    Q2 = L_t\z;
-    Q3 = transpose(D1)*Q2;
-    Q4 = U_t\z;
-    out = transpose(D0)*(Q1 + (Q2 + Q4));
-end
