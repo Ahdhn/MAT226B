@@ -53,5 +53,64 @@
    \label{tab:t_k_eig}
 \end{figure} 
 
+\item we used our  \texttt{nonsymmetric\_lanczos} and  \texttt{arnoldi\_process}  to find the converged eigenvalues for the matrix in file \texttt{HW4\_P4b.mat} for increasing values of $k$. We note that in out implementation we used the efficient matrix-vector multiplication routine developed in homework 3. It easy to use it to also implement transposed-matrix-vector multiplication needed for Lanczos process.
+
+
+It was hard to track down numerically what are the converged eigenvalues for both method. However, plotting the eigenvalues of $A\textprime$ along with the eigenvalues of $T_{k}$ from the nonsymmetric Lanczos process and $H_{k}$ from Arnoldi process, we can easily see the converged eigenvalues. Figure~\ref{fig:ard} shows how eigenvalues converges for increasing values of $K$. We notice that for small values of $K$, nonsymmetric Lanczos has a better chance to get eigenvalues that are true eigenvalues. 
+
+\item We used the same function and efficient matrix-vector multiplication to carry on this part. However, on personal laptop, nonsymmetric Lanczos runs of memory quickly even for small $K$ on the matrix provided on \texttt{HW4\_P4c.mat}. Thus, we used the same matrix as part (b) to show the correctness of our method for increasing $K$. Figure~\ref{fig:cc} shows the eigenvalues obtained for different $K$ values. We also computed the norm of difference between each consecutive step we took (after sorting the eigenvalues). Table~\ref{tab:err} shows these norm. While Figure~\ref{fig:cc} shows that the eigenvalues converges, the differences shown in~\ref{tab:err} does not correlate with this as the difference increases with increasing $K$. We think this is due to some outlier eigenvalues that can be seen along the x-axis. 
+
+\begin{figure}[!tbh]
+\centering        
+   \subfloat[K= 20]{\includegraphics[width=0.52\textwidth]{../code/p4b_k_20.png}}
+   \subfloat[K=60]{\includegraphics[width=0.52\textwidth]{../code/p4b_k_60.png}}
+      
+   \subfloat[K=100]{\includegraphics[width=0.52\textwidth]{../code/p4b_k_100.png}}    
+   \subfloat[K=200]{\includegraphics[width=0.52\textwidth]{../code/p4b_k_200.png}}
+   
+   \subfloat[K=300]{\includegraphics[width=0.52\textwidth]{../code/p4b_k_300.png}}
+   \subfloat[K=500]{\includegraphics[width=0.52\textwidth]{../code/p4b_k_500.png}}
+   
+   \caption{Converged eigenvalues from nonsymmetric Lanczos and Arnoldi process.}
+   \label{fig:ard}
+\end{figure}
+
+
+
+
+\begin{figure}[!tbh]
+ \centering    
+\begin{tabular}{ |p{1cm}|| p{10cm}|}
+\hline
+ K & Norm of the difference between eigenvalue of $T_{k}$  and $T_{k-1}$\\ \hhline{|=|=|}   
+\hline
+20 & \\
+\hline  
+60&	1.478839\\       
+\hline  
+100&	2.283969 \\       
+\hline  
+200&	1.590567 \\       
+\hline  
+300&	2.787656\\       
+\hline  
+500&	4.120523 \\       
+\hline  
+1000&	3.833748 \\       
+\hline  
+\end{tabular} 
+\caption{The norm of the difference between the eigenvalues at $K$ and $K-1$ using for increasing values of $k$ of nonsymmetric Lanczos process}
+   \label{tab:err}
+\end{figure} 
+
+
+\begin{figure}[!tbh]
+\centering        
+   \subfloat[K= 20]{\includegraphics[width=0.9\textwidth]{../code/p4c.png}} 
+   
+   \caption{Eigenvalues obtain from nonsymmetric Lanczos for increasing value of $K$}
+   \label{fig:cc}
+\end{figure}
+
 
 \end{enumerate}
