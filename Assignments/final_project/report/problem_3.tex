@@ -1,5 +1,5 @@
-\section*{Problem 1:}
-\begin{enumerate}
-\item
 
-\end{enumerate}
+\section*{Problem 3:}
+
+The leading $2k$ moments $\mu_{j} = c^{T}M^{j}r$ for $j=0,1,\dots, 2k-1$ can be computing as follows. Let $f_{j} = M^{j}r$. It is easy to see that $f_{j} = Mf_{j-1}$ from which we can compute the moment at $j$ as $\mu_{j}=c^{T}f_{j}$ and compute $f_{j}$ recursively. We can use the same LU factorization to compute $r$ and used the function \texttt{Mv} to compute $f_{j}$. The function \texttt{computeMoments} compute the moments as discussed here. 
+

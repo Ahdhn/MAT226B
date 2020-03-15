@@ -1,5 +1,18 @@
-\section*{Problem 1:}
-\begin{enumerate}
-\item
+\section*{Problem 2:}
+Here we are required to find an efficient way to compute $q = Mv$ and $q = M^{T}v$ for $v \in \mathbb{C}^{n}$ where $M = (A - s_{0}E)^{-1}E$. We can compute the matrix-vector multiplication efficiently using LU factorization. We first can write the multiplication as
 
-\end{enumerate}
+\begin{align*}
+& q = (A-s_{0}E)^{-1}Ev = (\underbrace{A-s_{0}E}_{W})^{-1}\underbrace{Ev}_{f} \\
+& q = W^{-1} f \quad \Rightarrow \quad Wq = f \quad \Rightarrow \quad \underbrace{PD^{-1}WQ}_{LU}\underbrace{Q^{T}q}_{d} = PD^{-1}f \\
+\end{align*}
+Thus, we can fist solve $Lc = PD^{-1}f$ for $c \in \mathbb{C}^{n}$ via forward substitution, then solve $Ud = c$ for $d \in \mathbb{C}^{n}$ via backward substitution, and finally set $q = Qd$. 
+
+We can use the same LU factorization to compute $q = M^{T}v$ efficiently. We first not that transposing the LU factorization for a given matrix $W$ is $U^{T}L^{T} = Q^{T}W^{T}D^{-T}P^{T}$
+ We can write this multiplication as 
+
+\begin{align*}
+& q = ((A-s_{0}E)^{-1}E)^{T}v = E^{T}\underbrace{(A-s_{0}E)^{-T}v}_{g}\\
+& g = W^{-T} v \quad \Rightarrow \quad W^{T}g = v \quad \Rightarrow \quad \underbrace{Q^{T}W^{T}D^{-T}P^{T}}_{U^{T}L^{T}}\underbrace{(D^{-T}P^{T})^{-1}g}_{d}=Q^{T}v\\
+\end{align*}
+
+Thus, we can first solve $U^{T}c = Q^{T}v$ for $c$ via forward substitution, then solve $L^{T}d = c$ for $d$ via backward substitution, and then set $g = D^{-T}P^{T}d$. Finally, we multiply $g$ from the left by $E^{T}$ to get $q$. The functions \texttt{Mv} and \texttt{transposeMv} implements these operations as discussed.  $d^{o}$
