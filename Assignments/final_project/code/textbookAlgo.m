@@ -1,5 +1,5 @@
-function [alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, c, b, k)
-  mu = computeMoments(L, U, P, Q, inv_D, E, c, b, k);
+function mu = textbookAlgo(L, U, P, Q, inv_D, E, c, r, k)
+  mu = computeMoments(L, U, P, Q, inv_D, E, c, r, k);
   
   M1 = zeros(k, k);
   for i = 1:k
@@ -9,6 +9,12 @@ function [alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, c, b, k)
   
   beta = zeros(k+1,1); 
   beta(1) = 1;
-  beta(2:end) = M2\mu(k+1:end);
+  beta(2:end) = M2\(-mu(k+1:end));
   alpha = mu(1:k) + M1*beta(2:end);
+  
+  [Q,mu] = deconv(alpha,beta);
+  if Q~= 0
+      warning('Q should be zero');
+  end
+  
 end

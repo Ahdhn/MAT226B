@@ -12,8 +12,10 @@ trans_mat_vec = @(x) transposeMv(L, U, P, Q, inv_D, E, x);
 
 load('FP_Ex1.mat');
 
-%s0 =50000;
-s0 = 500000;
+
+s0 = 100^1 + 2.0*pi*1i*5.5*10^8;
+s = 2*pi*1i*10^8;
+k = 5;
 
 W = A - s0.*E;
 
@@ -30,7 +32,7 @@ r = Q*d;
 %% Test Mv and transposeMv
 %{
 M = inv(W)*E;
-test = diag(magic(length(b)));
+test = diag(1./magic(length(b)));
 q = mat_vec(test);
 norm(q - M*test)
 qt = trans_mat_vec(test); 
@@ -39,18 +41,30 @@ norm(qt - transpose(M)*test)
 
 %% Test computeMoments 
 %{
-mu = computeMoments(L, U, P, Q, inv_D, E, c, b, 5);
+mu = computeMoments(L, U, P, Q, inv_D, E, c, r, k);
+
 M = inv(W)*E;
-r = -inv(W)*b;
-transpose(c)*r
-transpose(c)*M*r
-transpose(c)*M*M*r
-%transpose(c)*M*M*M*r
-%transpose(c)*M*M*M*M*r
+rr = -inv(W)*b;
+transpose(c)*rr
+transpose(c)*M*rr
+transpose(c)*M*M*rr
+transpose(c)*M*M*M*rr
+transpose(c)*M*M*M*M*rr
 %}
 
 %% Test textbookAlgo 
-[alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, c, b, 5);
+mu = textbookAlgo(L, U, P, Q, inv_D, E, c, r, k);
+
+M = inv(W)*E;
+rr = -inv(W)*b;
+transpose(c)*rr
+transpose(c)*M*rr
+transpose(c)*M*M*rr
+transpose(c)*M*M*M*rr
+transpose(c)*M*M*M*M*rr
+
+
 
 %% Test zkViaLanczos
-zkViaLanczos(mat_vec, trans_mat_vec, r, c, 5);
+
+zkViaLanczos(mat_vec, trans_mat_vec, r, c, k, s, s0);

@@ -1,4 +1,4 @@
-function [Tk] = nonsymmetric_lanczos(matVecFunc, matVecTransFunc, r, c, kmax)   
+function [Tk] = nonsymmetricLanczos(matVecFunc, matVecTransFunc, r, c, kmax)   
     n = length(r);
     alpha = zeros(kmax,1);
     gamma = zeros(kmax+1,1);
