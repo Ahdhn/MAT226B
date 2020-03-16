@@ -15,4 +15,5 @@ We can use the same LU factorization to compute $q = M^{T}v$ efficiently. We fir
 & g = W^{-T} v \quad \Rightarrow \quad W^{T}g = v \quad \Rightarrow \quad \underbrace{Q^{T}W^{T}D^{-T}P^{T}}_{U^{T}L^{T}}\underbrace{(D^{-T}P^{T})^{-1}g}_{d}=Q^{T}v\\
 \end{align*}
 
-Thus, we can first solve $U^{T}c = Q^{T}v$ for $c$ via forward substitution, then solve $L^{T}d = c$ for $d$ via backward substitution, and then set $g = D^{-T}P^{T}d$. Finally, we multiply $g$ from the left by $E^{T}$ to get $q$. The functions \texttt{Mv} and \texttt{transposeMv} implements these operations as discussed.  $d^{o}$
+Thus, we can first solve $U^{T}c = Q^{T}v$ for $c$ via forward substitution, then solve $L^{T}d = c$ for $d$ via backward substitution, and then set $g = D^{-T}P^{T}d$. Finally, we multiply $g$ from the left by $E^{T}$ to get $q$. The functions \texttt{Mv} and \texttt{transposeMv} implements these operations as discussed. 
+

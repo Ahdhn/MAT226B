@@ -3,3 +3,6 @@
 
 The leading $2k$ moments $\mu_{j} = c^{T}M^{j}r$ for $j=0,1,\dots, 2k-1$ can be computing as follows. Let $f_{j} = M^{j}r$. It is easy to see that $f_{j} = Mf_{j-1}$ from which we can compute the moment at $j$ as $\mu_{j}=c^{T}f_{j}$ and compute $f_{j}$ recursively. We can use the same LU factorization to compute $r$ and used the function \texttt{Mv} to compute $f_{j}$. The function \texttt{computeMoments} compute the moments as discussed here. 
 
+We wrote another function \texttt{textbookAlgo} that utilizes \texttt{computeMoments} to implement the textbook algorithm for computing $Z_{k}(s)$. More precisely, it compute the coefficient of the polynomials $p(\sigma)$  and $q(\sigma)$ such that $Z_{k}(s) = \frac{p(\sigma)}{q(\sigma)}$ where $p(\sigma)= \alpha_{0} + \alpha_{1} \sigma + \dots + \alpha_{k-1}\sigma^{k-1}$, $q(\sigma)= \beta_{0} + \beta_{1} \sigma + \dots + \beta_{k}\sigma^{k}$, $\alpha_{0}, \dots, \alpha_{k-1}, \beta_{1}\dots \beta_{k}\in \mathbb{C}$, and $\beta_{0}=1$. The output of this function is two vectors $\alpha$ and $\beta$ containing the coefficients. 
+
+

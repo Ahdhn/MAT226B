@@ -1,9 +1,75 @@
 \section*{Problem 1:}
 \begin{enumerate}
 \item
+We know from nonsymmetric Lanczos process that 
+\begin{align*}
+&MV_{k} = V_{k}T_{k} + \beta_{k+1}[0 \dots 0 v_{k+1}] \\
+\end{align*}
+We can multiply the above by $e_{1}$ to extract the first column ($v_{1}$) from $V_{k}$ before multiplying it by $M$ and the result is 
 
-\item
+\begin{align*}
+&MV_{k}e_{1} = V_{k}T_{k}e_{1} + \beta_{k+1}[0 \dots 0 v_{k+1}]e_{1} \\
+& MV_{k}e_{1} = V_{k}T_{k}e_{1} + 0\\
+\end{align*}
+Note that $MV_{k}e_{1} = Mv_{1}$.  Now, we can easily give the proof as 
+\begin{align*}
+M^{j}r = M^{j}(\beta_{1}v_{1}) = \beta_{1}M^{j}v_{1}
+\end{align*}
+\begin{align}
+M^{j}r = \beta_{1}V_{k}T_{k}^{j}e_{1}, \quad \forall j=0,1,\dots, k-1
+\label{eq:Mr}
+\end{align}
 
-\item
+For the second part, we note that $e_{k}^{T}T_{k}^{k-1}e_{1} = 0$. Thus, the second sum has no effect. We can let $j = k$ in \ref{eq:Mr} and we get 
+
+\begin{align*}
+M^{k}r = \beta_{1}V_{k}T_{k}^{k}e_{1} + \beta_{1}\beta_{k+1}(e_{k}^{T}T_{k}^{k-1}e_{1})v_{k+1}
+\end{align*}
+
+\item We follow the same steps as in (a). First we have 
+\begin{align*}
+& M^{T}W_{k} = W_{k}\hat{T_{k}} + \gamma_{k+1}[0 \dots 0 w_{k+1}]\\
+& M^{T}W_{k}e_{1} = W_{k}\hat{T_{k}}e_{1} + \gamma_{k+1}[0 \dots 0 w_{k+1}]e_{1}\\
+& M^{T}w_{1} = W_{k}\hat{T_{k}}e_{1} + 0\\
+\end{align*}
+Taking the transpose of the above, we get 
+\begin{align*}
+(M^{T}w_{1})^{T} = w_{1}^{T}M = e_{1}^{T}\hat{T_{k}}^{T}W_{k}^{T}
+\end{align*}
+We also know that $\hat{T_{k}}^{T} = D_{k}T_{k}D^{-1}_{k}$. Thus, 
+
+\begin{align*}
+w_{1}^{T}M = e_{1}^{T} D_{k}T_{k}D^{-1}_{k} W_{k}^{T}
+\end{align*}
+
+Now, we can give the proof as 
+\begin{align*}
+&c^{T}M^{j} = \gamma_{1}w_{1}^{T}M^{j} \\
+&c^{T}M^{j} = \gamma_{1}e_{1}^{T} D_{k}T_{k}^{j}D^{-1}_{k} W_{k}^{T} \\
+&c^{T}M^{j} = \gamma_{1}\delta_{1}e_{1}^{T}T_{k}^{j}D^{-1}_{k} W_{k}^{T} \\
+\end{align*}
+
+\item We can write the $Z(s)$ as 
+\begin{align}
+Z(s) = \sum_{j=0}^{\infty} \sigma^{j}c^{T}M^{j}r
+\label{eq:zs}
+\end{align}
+
+
+We can find two values positive $j_{1}$ and $j_{2}$ such that $j_{1}+j_{2} = j$. Then, we can write~\ref{eq:zs} as 
+\begin{align*}
+&Z(s) = \sum_{j=0}^{\infty} \sigma^{j}c^{T}M^{j_{1}}M^{j_{2}}r\\
+&Z(s) = \sum_{j=0}^{\infty} \sigma^{j} (\gamma_{1}\delta_{1}e_{1}^{T}T_{k}^{j_{1}}D^{-1}_{k} W_{k}^{T})(\beta_{1}V_{k}T_{k}^{j_{2}}e_{1})\\
+\end{align*}
+\begin{align}
+Z(s) = \sum_{j=0}^{\infty} \sigma^{j} \gamma_{1}\delta_{1}\beta_{1}e_{1}^{T}T_{k}^{j_{1}}D_{k}^{-1}W_{k}^{T}V_{k}T_{k}^{j_{2}}e_{1}
+\label{eq:zs2}
+\end{align}
+
+We know from Lanczos process that $W_{k}V_{k} = D_{k}$. In addition, we have $c^{T}r = (\gamma_{1}w_{1})^{T}(\beta_{1}v_{1}) = \gamma_{1}\beta_{1}w_{1}^{T}v_{1}=\gamma_{1}\delta_{1}\beta_{1}$. We can plug this relations in~\ref{eq:zs2} to get
+\begin{align*}
+&Z(s) = \sum_{j=0}^{\infty} \sigma^{j} (c^{T}r)e_{1}^{T}T_{k}^{j_{1}}D_{k}^{-1}D_{k}T_{k}^{j_{2}}e_{1}\\
+&Z(s) = \sum_{j=0}^{\infty} \sigma^{j} (c^{T}r)e_{1}^{T}T_{k}^{j_{1}}T_{k}^{j_{2}}e_{1} = \sum_{j=0}^{\infty} \sigma^{j} (c^{T}r)e_{1}^{T}T_{k}^{j}e_{1}\\
+\end{align*}
 
 \end{enumerate}
