@@ -39,8 +39,8 @@ norm(qt - transpose(M)*test)
 
 %% Test computeMoments 
 %{
-M = inv(W)*E;
 mu = computeMoments(L, U, P, Q, inv_D, E, c, b, 5);
+M = inv(W)*E;
 r = -inv(W)*b;
 transpose(c)*r
 transpose(c)*M*r
@@ -50,7 +50,7 @@ transpose(c)*M*M*r
 %}
 
 %% Test textbookAlgo 
-%[alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, c, b, 5);
+[alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, c, b, 5);
 
 %% Test zkViaLanczos
 zkViaLanczos(mat_vec, trans_mat_vec, r, c, 5);
