@@ -13,9 +13,7 @@ trans_mat_vec = @(x) transposeMv(L, U, P, Q, inv_D, E, x);
 load('FP_Ex1.mat');
 
 
-s0 = 1000^1 + 2.0*pi*1i*5.5*10^8;
-s = 2*pi*1i*10^8;
-k = 5;
+s0 = 1000 + 2.0*pi*1i*5.5*10^8;
 
 W = A - s0.*E;
 
@@ -50,12 +48,28 @@ transpose(c)*M*M*M*rr
 transpose(c)*M*M*M*M*rr
 %}
 
-%% Test textbookAlgo 
-mu = textbookAlgo(L, U, P, Q, inv_D, E, c, r, k);
 
-Zs = transpose(c)*(inv(s0.*E-A)*b)
-Zk_textbook = polyval(flip(mu),s-s0)
+f = 2*pi*1i.*linspace(10^8,10^9,1001)';
+Zk_textbook = zeros(1001,1);
+Zk_lanczos = zeros(1001,1);
+Zs = zeros(1001,1);
 
-%% Test zkViaLanczos
-Zk_lanczos = zkViaLanczos(mat_vec, trans_mat_vec, r, c, k, s, s0);
-Zk_lanczos 
+k = 10;
+[alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, r, c, k);
+Tk = nonsymmetricLanczos(mat_vec, trans_mat_vec, r, c, k);    
+for ff =1:length(f)
+    s = f(ff);
+    
+    %Exact
+    Zs(ff) = transpose(c)*(inv(s.*E-A)*b);    
+    
+    %Textbook
+    Zk_textbook(ff) = polyval(flip(alpha), s-s0)/polyval(flip(beta),s-s0);    
+    
+    %Lanczos
+    Zk_lanczos(ff) = zkViaLanczos(Tk,c,r, s, s0);    
+end
+
+
+
+
