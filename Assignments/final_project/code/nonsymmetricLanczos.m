@@ -1,5 +1,5 @@
 function [Tk] = nonsymmetricLanczos(matVecFunc, matVecTransFunc, r, c, kmax)   
-    n = length(r);
+    
     alpha = zeros(kmax,1);
     gamma = zeros(kmax+1,1);
     beta = zeros(kmax+1,1);
@@ -14,7 +14,8 @@ function [Tk] = nonsymmetricLanczos(matVecFunc, matVecTransFunc, r, c, kmax)
     for k =1:kmax        
         delta_k = transpose(wk)*vk;
         
-        if abs(delta_k) == 0
+        if abs(delta_k) == eps
+            warning('Breakdown in nonsymmetricLanczos');
             break;
         end
         
@@ -37,7 +38,8 @@ function [Tk] = nonsymmetricLanczos(matVecFunc, matVecTransFunc, r, c, kmax)
         beta(k+1) = norm(q);        
         gamma(k+1) = norm(s);
         
-        if beta(k+1) == 0 || gamma(k+1) == 0
+        if beta(k+1) == eps || gamma(k+1) == eps
+            warning('Breakdown in nonsymmetricLanczos');
             break;
         end        
         vk_1 = vk; 
