@@ -1,2 +1,16 @@
 \section*{Problem 4:}
 We wrote the function \texttt{zkViaLanczos} which computes $Z_k$	given $T_{k}$, $s$ and $s_{0}$. $T_{k}$ is computed from our previous implementation of the nonsymmetric Lanczos in Homework 3 which feed in with the efficient implementation of the $Mv$ and $M^{T}v$ from Problem 2. 
+
+\paragraph{System Specs:} All our experiments run on Intel(R) Xeon(R) CPU E3-1280 v5 with 3.70 GHz and 32 GB of RAM on 64-bit operating system running Windows 7. 
+
+\paragraph{$s_0$ with fast convergence:} We test our implementation of the textbook and Lanczos-based algorithm for different values of $s_{0}$ and found that it runs fairly fast for the small input given in \texttt{FP\_Ex1.mat}; it takes less than a second even for large i.e., $k < 100$. 
+
+We followed the recommendation given in the lectures for how to pick $s_{0}$. We choose $s_{0} = \expnumber{1}{5} + 2\pi i \expnumber{5.5}{8} $. 
+
+\paragraph{Comparison:} We run both our implementation for different values of $k$ and the above $s_{0}$ and compared between both. Table~\ref{tab:comp} should the average different ($\parallel \dot{•} \parallel^{2}$) and the maximum different between the two vectors containing the output of both algorithms for different values of $s$. 
+
+\paragraph{Explanation:} We believe the reason why the textbook algorithm does not perform well is because it depends on computing $M^{j}r$ (to compute the moments) for increasing values of $j$ which convergences quickly to the the eigenvector of $M$ with largest eigenvalue. Thus, the information it contains comes from a single eigenvector where the information should comes from all eigenvectors of $M$. In contrast, Lanczos's $T_{k}$ represents oblique projection of $M$ onto the $K_{k}(M,r)$ Krylov subspace which contains information about $k$ eigenvectors. 
+
+
+
+
