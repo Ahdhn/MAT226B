@@ -14,7 +14,7 @@ function [Tk] = nonsymmetric_lanczos(matVecFunc, matVecTransFunc, r, c, kmax)
     for k =1:kmax        
         delta_k = transpose(wk)*vk;
         
-        if abs(delta_k) == 0
+        if abs(delta_k) == eps
             break;
         end
         
@@ -37,7 +37,7 @@ function [Tk] = nonsymmetric_lanczos(matVecFunc, matVecTransFunc, r, c, kmax)
         beta(k+1) = norm(q);        
         gamma(k+1) = norm(s);
         
-        if beta(k+1) == 0 || gamma(k+1) == 0
+        if beta(k+1) == eps || gamma(k+1) == eps
             break;
         end        
         vk_1 = vk; 
