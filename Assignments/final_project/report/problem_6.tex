@@ -8,19 +8,20 @@ We used our implementation of Lanczos-based approach and run it on the data of \
    \label{fig:fig2}
 \end{figure}
 
-
+\paragraph{Lanczos approach with difference $s_{0}$:}  We runs similar test as we did in previous problem to see the effect of $s_{0}$. Since the problem is more expensive to solve, we run $k$ in a loop that increment by 100 between 200 and 10000. We choose similar $s_{0}$ as we did before and the results is shown in Table~\ref{tab:s02}. In addition, we reduce the tolerance to 10^{-3}. The tolerance here means the norm squared of difference between results of $Z_{k}(s)$ and $Z_{k-1}(s)$. 
 
 
 \begin{table}[!tbh]
  \centering    
-\begin{tabular}{ |p{3.0cm}|p{1.5cm}| p{4cm}||}
+\begin{tabular}{ ||p{3.0cm}|p{1.5cm}| p{4cm}| p{4cm}||}
 \hline
- $s_{0}$  & $k$ & Time           \\ \hhline{|=|=|=|}   
- $10^{10} + 2 \pi i f_{avg}$ & &  \\
- $10^{10} + 2 \pi i f_{min}$ & &  \\
- $10^{10} + 2 \pi i f_{max}$ & &  \\
- $10^{?} $                   & &  \\
- $10^{10}$                   & &  \\  
+ $s_{0}$  & $k$ & Time & Average Difference \\ \hhline{|=|=|=|=|}   
+ 
+ $10^{10} + 2 \pi i f_{avg}$ & 600 & $\expnumber{1.420857}{2}$ & $\expnumber{2.174922}{-4}$ \\
+ $10^{10} + 2 \pi i f_{min}$ & & & $\expnumber{}{}$ \\
+ $10^{10} + 2 \pi i f_{max}$ & & & $\expnumber{}{}$\\
+ $10^{8} $                   & & & $\expnumber{}{}$ \\
+ $10^{12}$                   & & & $\expnumber{}{}$\\  
 \hline
 \end{tabular} 
 \caption{Experimenting with Lanczos approach using different $s_{0}$ values ($f_{avg} = \frac{f_{min}+f_{max}}{2}$) }

@@ -128,20 +128,23 @@ function Table_3()
     num_data = 1001;  
    
    
-    s0_vector = [10^10 + 2.0*pi*1i*5.5*10^8, 10^10 + 2.0*pi*1i*f_min,...
+    s0_vector = [10^10 + 2.0*pi*1i*2.05*10^10, 10^10 + 2.0*pi*1i*f_min,...
         10^10 + 2.0*pi*1i*f_max, 10^12, 10^8]; 
     Zk_lanczos_prv = 0;
     for ss = 1:length(s0_vector)       
         s0 = s0_vector(ss);        
-        for k = 800:10000
+      
+        for k = 200:100:10000
             [Zk_lanczos, time_lanczos] =...
                 run(s0, k, f_min, f_max, num_data, false, false);
             if Zk_lanczos_prv == 0
                 Zk_lanczos_prv = Zk_lanczos;
             else
                  diff = Zk_lanczos - Zk_lanczos_prv; 
-            
-                if norm(diff)^2 < 10^-5              
+                 Zk_lanczos_prv = Zk_lanczos;
+                 k
+                 norm(diff)^2
+                if norm(diff)^2 < 10^-3            
                     fprintf('\n s0= %e + %ei, K= %d, Norm Diff = %e, LanczosTime= %e\n',...
                          real(s0), imag(s0), k, norm(diff)^2, time_lanczos);                 
                     break;
