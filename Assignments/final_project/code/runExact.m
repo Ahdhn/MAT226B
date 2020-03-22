@@ -4,7 +4,7 @@ function Zs = runExact(num_data, A, E, b, c, s_vector)
 
     for ss =1:length(s_vector)
         s = s_vector(ss);           
-        Zs(ss) = log10(abs(transpose(c)*((s.*E-A)\b)));    
+        Zs(ss) = abs(transpose(c)*((s.*E-A)\b));    
     end
     
 end

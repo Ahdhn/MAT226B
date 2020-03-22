@@ -7,19 +7,18 @@ format long e;
 
 global A E b c;
 
-load('FP_Ex1.mat');
-
-Figure_1();
-
-Table_1();
-
-Table_2();
+%load('FP_Ex1.mat');
+%Figure_1();
+%Table_1();
+%Table_2();
 
 load('FP_Ex2.mat');
-Figure_2();
+%Figure_2();
+Table_3();
 
 function Figure_1()
-    
+    fprintf('\n Problem 5:');
+    fprintf('\n Generating Figure 1: \n');
     f_min = 10^8;
     f_max = 8*10^9; 
     num_data = 1001;
@@ -35,7 +34,7 @@ function Figure_1()
     hold on;
     
     [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] =...
-            run(s0, 100, f_min, f_max, num_data, false, false);
+            run(s0, 100, f_min, f_max, num_data, false);
         
     H = semilogy(f, Zk_lanczos, 'LineWidth', 1.5);    
     legend('Exact', 'Textbook Algo.', 'Lanczos-based Algo.', 'Location','best');
@@ -85,13 +84,7 @@ function Table_2()
                 run(s0, k, f_min, f_max, num_data, false, false);
             diff = Zk_lanczos - Zs; 
             
-            if norm(diff)^2 < 10^-5
-                %figure(ss);                
-                %f = linspace(f_min,f_max,num_data)';
-                %semilogy(f, Zs,'LineWidth', 2.0);
-                %hold on;       
-                %semilogy(f, Zk_lanczos, '*');
-                %hold off;
+            if norm(diff)^2 < 10^-5              
                 fprintf('\n s0= %e + %ei, K= %d, Norm Diff = %e, LanczosTime= %e\n',...
                      real(s0), imag(s0), k, norm(diff)^2, time_lanczos);                 
                 break;
@@ -102,32 +95,71 @@ function Table_2()
 end 
 
 function Figure_2()
+    fprintf('\n Problem 6:');
+    fprintf('\n Generating Figure 2: \n');
+    
     f_min = 10^9;
     f_max = 4*10^10; 
     num_data = 1001;
     
-    s0 = 10^5 + 2.0*pi*1i*2.05*10^10;
-    k = 100;
-    
+    %s0 = 10^10 + 2.0*pi*1i*2.05*10^10;
+    s0 = 10^10;
+    k = 1000;
+     f = logspace(f_min,f_max,num_data)';
     [Zk_lanczos, time_lanczos] =...
             run(s0, k , f_min, f_max, num_data, false, false);
         
     figure;
-    f = linspace(f_min,f_max,num_data)'; 
+    f = linspace(f_min,f_max,num_data)';
     H = loglog(f, Zk_lanczos, 'LineWidth', 1.5);
     legend('Lanczos-based Algo.', 'Location','best');
-    xlabel(gca, 'f');
+    xlabel(gca, 'log_{10}|f|');
     ylabel(gca,'log_{10}|Z_{k}(s)|');
     
     saveas(H, 'figure2.png');
 end
 
+function Table_3()
+    fprintf('\n Problem 5:');
+    fprintf('\n Generating Table 2 data: \n');
+    
+    f_min = 10^9;
+    f_max = 4*10^10; 
+    num_data = 1001;  
+   
+   
+    s0_vector = [10^10 + 2.0*pi*1i*5.5*10^8, 10^10 + 2.0*pi*1i*f_min,...
+        10^10 + 2.0*pi*1i*f_max, 10^12, 10^8]; 
+    Zk_lanczos_prv = 0;
+    for ss = 1:length(s0_vector)       
+        s0 = s0_vector(ss);        
+        for k = 800:10000
+            [Zk_lanczos, time_lanczos] =...
+                run(s0, k, f_min, f_max, num_data, false, false);
+            if Zk_lanczos_prv == 0
+                Zk_lanczos_prv = Zk_lanczos;
+            else
+                 diff = Zk_lanczos - Zk_lanczos_prv; 
+            
+                if norm(diff)^2 < 10^-5              
+                    fprintf('\n s0= %e + %ei, K= %d, Norm Diff = %e, LanczosTime= %e\n',...
+                         real(s0), imag(s0), k, norm(diff)^2, time_lanczos);                 
+                    break;
+                end   
+                
+            end
+        end
+    end    
+     
+end 
+
 function [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] = ...
     run(s0, k, f_min, f_max, num_data, run_textbook, run_exact)
 
-    global A E b c;
+    global A E b c;   
    
-    f = linspace(f_min,f_max,num_data)';
+   f = linspace(f_min,f_max,num_data)';   
+    
     s_vector = 2*pi*1i.*f;
     
     W = A - s0.*E;

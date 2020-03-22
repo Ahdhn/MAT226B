@@ -11,7 +11,7 @@ function Zk_lanczos = runLanczos(num_data, k, s0, r, c, s_vector, L, U, P, Q, in
     
      for ss =1:length(s_vector)
         s = s_vector(ss);       
-        Zk_lanczos(ss) = log10(abs(zkViaLanczos(Tk, I, e1, c,r, s, s0)));           
+        Zk_lanczos(ss) = abs(zkViaLanczos(Tk, I, e1, c,r, s, s0));           
     end
         
 end

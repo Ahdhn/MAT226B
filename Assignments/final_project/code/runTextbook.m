@@ -4,7 +4,7 @@ function Zk_textbook = runTextbook(num_data,k, s0, r, c, s_vector, L, U, P, Q, i
     
     for ss =1:length(s_vector)
        s = s_vector(ss);       
-       Zk_textbook(ss) = log10(abs(polyval(flip(alpha), s-s0)/...
-           polyval(flip(beta),s-s0)));    
+       Zk_textbook(ss) = abs(polyval(flip(alpha), s-s0)/...
+           polyval(flip(beta),s-s0));    
     end    
 end 
