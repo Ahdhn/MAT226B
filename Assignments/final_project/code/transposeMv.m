@@ -1,5 +1,5 @@
 function q = transposeMv(L, U, P, Q, inv_D, E, v)  
-    %TODO use 'vector'????
+  
     c = transpose(U)\(transpose(Q)*v);
     d = transpose(L)\c;
     g = transpose(P*inv_D)*d;

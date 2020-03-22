@@ -1,5 +1,4 @@
-function Zk_textbook = runTextbook(num_data,k, s0, r, c, s_vector)
-     global L  U P Q inv_D  E;
+function Zk_textbook = runTextbook(num_data,k, s0, r, c, s_vector, L, U, P, Q, inv_D, E)    
     Zk_textbook = zeros(num_data,1);
     [alpha, beta] = textbookAlgo(L, U, P, Q, inv_D, E, r, c, k);
     

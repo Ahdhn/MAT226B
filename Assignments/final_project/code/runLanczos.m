@@ -1,5 +1,8 @@
-function Zk_lanczos = runLanczos(num_data, k, s0, r, c, s_vector, mat_vec,trans_mat_vec )
+function Zk_lanczos = runLanczos(num_data, k, s0, r, c, s_vector, L, U, P, Q, inv_D, E)
 
+    mat_vec = @(x) Mv(L, U, P, Q, inv_D, E,x);
+    trans_mat_vec = @(x) transposeMv(L, U, P, Q, inv_D, E, x);
+    
     Zk_lanczos = zeros(num_data,1);
     Tk = nonsymmetricLanczos(mat_vec, trans_mat_vec, r, c, k);   
     I =speye(k);

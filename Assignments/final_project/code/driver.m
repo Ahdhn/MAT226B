@@ -9,11 +9,11 @@ global A E b c;
 
 load('FP_Ex1.mat');
 
-%Figure_1();
+Figure_1();
 
-%Table_1();
+Table_1();
 
-%Table_2();
+Table_2();
 
 load('FP_Ex2.mat');
 Figure_2();
@@ -112,8 +112,9 @@ function Figure_2()
     [Zk_lanczos, time_lanczos] =...
             run(s0, k , f_min, f_max, num_data, false, false);
         
+    figure;
     f = linspace(f_min,f_max,num_data)'; 
-    H = semilogy(f, Zk_lanczos, 'LineWidth', 1.5);
+    H = loglog(f, Zk_lanczos, 'LineWidth', 1.5);
     legend('Lanczos-based Algo.', 'Location','best');
     xlabel(gca, 'f');
     ylabel(gca,'log_{10}|Z_{k}(s)|');
@@ -124,31 +125,26 @@ end
 function [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] = ...
     run(s0, k, f_min, f_max, num_data, run_textbook, run_exact)
 
-    global L  U P Q inv_D  A E b c;
-    
-    mat_vec = @(x) Mv(L, U, P, Q, inv_D, E,x);
-    trans_mat_vec = @(x) transposeMv(L, U, P, Q, inv_D, E, x);
+    global A E b c;
    
     f = linspace(f_min,f_max,num_data)';
     s_vector = 2*pi*1i.*f;
     
     W = A - s0.*E;
     
-    %TODO use 'vector'????
-    [L, U, P, Q, D] = lu(W);
+    [L, U, P, Q, D] = lu(W);  
     inv_D = inv(D);
     r = computeR( L, U, P, Q, inv_D, b);
     
     t = cputime;
-    Zk_lanczos = runLanczos(num_data, k, s0, r, c, s_vector, mat_vec,...
-        trans_mat_vec );
+    Zk_lanczos = runLanczos(num_data, k, s0, r, c, s_vector, L, U, P, Q, inv_D, E);
     time_lanczos = cputime-t;
     
     Zk_textbook = 0;
     time_textbook = 0;
     if run_textbook
         t = cputime;
-        Zk_textbook = runTextbook(num_data,k, s0, r, c, s_vector);
+        Zk_textbook = runTextbook(num_data,k, s0, r, c, s_vector, L, U, P, Q, inv_D, E);
         time_textbook = cputime-t;
     end 
     
