@@ -9,17 +9,41 @@ global A E b c;
 
 load('FP_Ex1.mat');
 
-Table_2();
+%Figure_1();
 
-Table_1();
+%Table_1();
 
-%f = linspace(f_min,f_max,num_data)';
-%semilogy(f, Zs);
-%hold on;
-%semilogy(f, Zk_textbook, '*');
-%hold on;
-%semilogy(f, Zk_lanczos, 'LineWidth', 3.0);
-%hold off;
+%Table_2();
+
+load('FP_Ex2.mat');
+Figure_2();
+
+function Figure_1()
+    
+    f_min = 10^8;
+    f_max = 8*10^9; 
+    num_data = 1001;
+    s0 = 10^5 + 2.0*pi*1i*5.5*10^8;
+    
+    [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] =...
+            run(s0, 10 , f_min, f_max, num_data, true, true);
+    figure;
+    f = linspace(f_min,f_max,num_data)';
+    semilogy(f, Zs,'LineWidth', 3.0);
+    hold on;
+    semilogy(f, Zk_textbook);
+    hold on;
+    
+    [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] =...
+            run(s0, 100, f_min, f_max, num_data, false, false);
+        
+    H = semilogy(f, Zk_lanczos, 'LineWidth', 1.5);    
+    legend('Exact', 'Textbook Algo.', 'Lanczos-based Algo.', 'Location','best');
+    xlabel(gca, 'f');
+    ylabel(gca,'log_{10}|Z(s)|');
+    
+    saveas(H, 'figure1.png');
+end
 
 function Table_1()
     fprintf('\n Problem 5:');
@@ -53,33 +77,49 @@ function Table_2()
     [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] =...
             run(s0, 2, f_min, f_max, num_data, false, true);
     s0_vector = [10^5 + 2.0*pi*1i*5.5*10^8, 10^5 + 2.0*pi*1i*f_min,...
-        10^5 + 2.0*pi*1i*f_max, 10^1, 10^5, 10^10] ;   
-    for ss = 1:length(s0_vector)
-        %s0 = 10^5 + 2.0*pi*1i*5.5*10^8; 
-        s0 = s0_vector(ss);
-        
+        10^5 + 2.0*pi*1i*f_max, 10^10, 10^9];    
+    for ss = 1:length(s0_vector)       
+        s0 = s0_vector(ss);        
         for k = 200:1000
             [Zk_lanczos, time_lanczos] =...
                 run(s0, k, f_min, f_max, num_data, false, false);
             diff = Zk_lanczos - Zs; 
             
             if norm(diff)^2 < 10^-5
-                figure(ss);
-                
-                f = linspace(f_min,f_max,num_data)';
-                semilogy(f, Zs,'LineWidth', 2.0);
-                hold on;       
-                semilogy(f, Zk_lanczos, '*');
-                hold off;
+                %figure(ss);                
+                %f = linspace(f_min,f_max,num_data)';
+                %semilogy(f, Zs,'LineWidth', 2.0);
+                %hold on;       
+                %semilogy(f, Zk_lanczos, '*');
+                %hold off;
                 fprintf('\n s0= %e + %ei, K= %d, Norm Diff = %e, LanczosTime= %e\n',...
-                     real(s0), imag(s0), k, norm(diff)^2, time_lanczos);
-                 legend('Exact', 'Lanczos Approach');
+                     real(s0), imag(s0), k, norm(diff)^2, time_lanczos);                 
                 break;
             end       
         end
     end    
      
 end 
+
+function Figure_2()
+    f_min = 10^9;
+    f_max = 4*10^10; 
+    num_data = 1001;
+    
+    s0 = 10^5 + 2.0*pi*1i*2.05*10^10;
+    k = 100;
+    
+    [Zk_lanczos, time_lanczos] =...
+            run(s0, k , f_min, f_max, num_data, false, false);
+        
+    f = linspace(f_min,f_max,num_data)'; 
+    H = semilogy(f, Zk_lanczos, 'LineWidth', 1.5);
+    legend('Lanczos-based Algo.', 'Location','best');
+    xlabel(gca, 'f');
+    ylabel(gca,'log_{10}|Z_{k}(s)|');
+    
+    saveas(H, 'figure2.png');
+end
 
 function [Zk_lanczos, time_lanczos, Zk_textbook, time_textbook, Zs] = ...
     run(s0, k, f_min, f_max, num_data, run_textbook, run_exact)
