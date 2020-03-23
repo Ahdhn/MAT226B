@@ -7,13 +7,13 @@ format long e;
 
 global A E b c;
 
-%load('FP_Ex1.mat');
-%Figure_1();
-%Table_1();
-%Table_2();
+load('FP_Ex1.mat');
+Figure_1();
+Table_1();
+Table_2();
 
 load('FP_Ex2.mat');
-%Figure_2();
+Figure_2();
 Table_3();
 
 function Figure_1()
@@ -141,9 +141,7 @@ function Table_3()
                 Zk_lanczos_prv = Zk_lanczos;
             else
                  diff = Zk_lanczos - Zk_lanczos_prv; 
-                 Zk_lanczos_prv = Zk_lanczos;
-                 k
-                 norm(diff)^2
+                 Zk_lanczos_prv = Zk_lanczos;                
                 if norm(diff)^2 < 10^-3            
                     fprintf('\n s0= %e + %ei, K= %d, Norm Diff = %e, LanczosTime= %e\n',...
                          real(s0), imag(s0), k, norm(diff)^2, time_lanczos);                 

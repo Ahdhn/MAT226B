@@ -1,6 +1,8 @@
 \section*{Problem 5:}
 \paragraph{System Specs:} All our experiments run on Intel(R) Xeon(R) CPU E3-1280 v5 with 3.70 GHz and 32 GB of RAM on 64-bit operating system running Windows 7. 
 
+\paragraph{Code:} We provide a single file \texttt{driver.m} that generates all the data in the tables and plots by running it. It calls the necessary function and load the examples one after another. 
+ 
 \paragraph{Plots:} Figure~\ref{fig:all} shows the results of the three algorithms plotted on top of each others. It shows that Lanczos-based algorithm is able to capture $Z(s)$ almost exactly using $k=100$. For such value of $k$, the textbook algorithm will return NaN everywhere. Thus, we used $k=10$ in the plot. Function \texttt{Figure\_1()} in \texttt{driver.m} file generates this plot. 
 
 \begin{figure}[!tbh]
